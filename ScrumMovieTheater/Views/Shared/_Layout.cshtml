@@ -7,7 +7,9 @@
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ScrumMovieTheater.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <header>
@@ -40,9 +42,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Theater" asp-action="Index">Theater</a>
                         </li>
-
-
-
                     </ul>
                     <form class="d-flex" asp-controller="Movies" asp-action="Index" method="get" role="search">
                         <input class="form-control me-2" type="search" name="q" placeholder="Search movies" aria-label="Search movies">
@@ -60,26 +59,13 @@
     </div>
 
     <footer class="border-top footer bg-dark py-3">
-    <div class="container text-center">
-        <span style="color:white;">&copy; 2026 - ScrumMovieTheater - </span><a asp-area="" asp-controller="Home" asp-action="Privacy" style="color:#e50914;">Privacy</a>
-    </div>
-</footer>
+        <div class="container text-center">
+            <span class="footer-text">&copy; 2026 - ScrumMovieTheater - </span><a asp-area="" asp-controller="Home" asp-action="Privacy" class="footer-link">Privacy</a>
+        </div>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-<style>
-    .theater-brand {
-        color: #e50914 !important;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-family: Georgia, serif;
-    }
-
-    .nav-link:hover {
-        color: #e50914 !important;
-    }
-</style>

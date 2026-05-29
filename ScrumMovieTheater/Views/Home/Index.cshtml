@@ -1,7 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@section Styles {
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
 }
 
+@{
+    ViewData["Title"] = "Home Page";
+}
 
 <section class="hero-section text-center text-white py-5 mb-0">
     <div class="container">
@@ -129,62 +132,3 @@
         </div>
     </div>
 </section>
-
-<style>
-    .hero-section {
-        background: linear-gradient(135deg, #0d0d0d, #4a0000);
-        min-height: 40vh;
-        display: flex;
-        align-items: center;
-    }
-
-    .hero-title {
-        color: #e50914;
-    }
-
-    .hero-btn {
-        background-color: #e50914;
-        color: white;
-        border: none;
-    }
-
-    .hero-btn:hover {
-        background-color: #b8070f;
-        color: white;
-    }
-
-    .section-title {
-        color: #e50914;
-        border-color: #e50914 !important;
-    }
-
-    .poster-placeholder {
-        height: 200px;
-        background-color: #1a1a1a;
-        border-bottom: 2px solid #e50914;
-    }
-
-    .movie-card:hover {
-        transform: scale(1.03);
-        transition: transform 0.2s ease;
-    }
-
-    .ticket-btn {
-        background-color: #e50914;
-        color: white;
-        border: none;
-    }
-
-    .ticket-btn:hover {
-        background-color: #b8070f;
-        color: white;
-    }
-
-    .coming-soon-card {
-        border: 1px solid #e50914 !important;
-    }
-
-    .coming-soon-badge {
-        background-color: #e50914;
-    }
-</style>
