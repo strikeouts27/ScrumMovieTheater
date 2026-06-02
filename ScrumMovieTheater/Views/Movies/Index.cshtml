@@ -1,5 +1,9 @@
 @model IReadOnlyList<ScrumMovieTheater.Models.MovieViewModel>
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/Movies.css" asp-append-version="true" />
+}
+
 @{
     ViewData["Title"] = "Movies";
 }
@@ -12,3 +16,46 @@
         </div>
     </div>
 
+    <div class="row">
+
+        <!-- Left Side - Theater Picture -->
+        <div class="col-md-4 mb-4">
+            <img src="~/images/nooooodles-1337-m3th3rIQ9-w-unsplash.jpg" alt="Scrum Movie Theater" class="theater-image rounded shadow" />
+        </div>
+
+        <!-- Right Side - Movies Table -->
+        <div class="col-md-8">
+            @if (Model == null || !Model.Any())
+            {
+                <div class="alert alert-dark text-center">
+                    <p class="mb-0">No movies currently showing. Check back soon!</p>
+                </div>
+            }
+            else
+            {
+                <table class="table table-dark table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Genre</th>
+                            <th>Duration</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var movie in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold">@movie.Title</td>
+                                <td>@movie.Genre</td>
+                                <td>@movie.DurationHours h @movie.DurationMinutes m</td>
+                                <td>@movie.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+
+    </div>
+</div>
