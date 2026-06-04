@@ -1,0 +1,33 @@
+@model List<ScrumMovieTheater.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h2>Movies</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Search))
+{
+    <div class="alert alert-info">
+        Search result: <strong>@ViewBag.Search</strong>
+    </div>
+}
+
+<div class="row">
+    @foreach (var movie in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+
+                <img src="@movie.ImageUrl"
+                     class="card-img-top"
+                     style="height:300px; object-fit:cover; width:100%;" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@movie.Title</h5>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
