@@ -1,22 +1,19 @@
-﻿@{
+﻿@section Styles {
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+}
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+<section class="hero-section text-center text-white py-5 mb-0">
     <div class="container">
-        <a class="navbar-brand fw-semibold" asp-controller="Home" asp-action="Index">
-            Scrum Movie Theater
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <h1 class="display-3 fw-bold hero-title">Scrum Movie Theater</h1>
+        <p class="lead text-light">Experience the magic of cinema like never before</p>
+        <a asp-controller="Movies" asp-action="Index" class="btn btn-lg mt-3 me-2 hero-btn">See All Movies</a>
+        <a asp-area="Admin" asp-controller="Movie" asp-action="AddMovie" class="btn btn-outline-light btn-lg mt-3">Manager Portal</a>
+    </div>
+</section>
 
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -37,10 +34,59 @@
                 </li>
             </ul>
 
-            <form class="d-flex" asp-controller="Movies" asp-action="Index" method="get" role="search">
-                <input class="form-control me-2" type="search" name="q" placeholder="Search movies" aria-label="Search movies">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+<!-- Coming Soon Section -->
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <h2 class="fw-bold section-title border-bottom pb-2 mb-4">Coming Soon</h2>
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="card bg-black text-white h-100 shadow coming-soon-card">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎥</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Movie Title</h5>
+                        <p class="card-text text-muted small">Release: July 2026</p>
+                        <span class="badge w-100 py-2 coming-soon-badge">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card bg-black text-white h-100 shadow coming-soon-card">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎥</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Movie Title</h5>
+                        <p class="card-text text-muted small">Release: August 2026</p>
+                        <span class="badge w-100 py-2 coming-soon-badge">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card bg-black text-white h-100 shadow coming-soon-card">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎥</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Movie Title</h5>
+                        <p class="card-text text-muted small">Release: September 2026</p>
+                        <span class="badge w-100 py-2 coming-soon-badge">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card bg-black text-white h-100 shadow coming-soon-card">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎥</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Movie Title</h5>
+                        <p class="card-text text-muted small">Release: October 2026</p>
+                        <span class="badge w-100 py-2 coming-soon-badge">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+</section>

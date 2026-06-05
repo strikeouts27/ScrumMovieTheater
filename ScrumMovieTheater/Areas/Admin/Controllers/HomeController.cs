@@ -1,9 +1,8 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using ScrumMovieTheater.Models;
 
-namespace ScrumMovieTheater.Controllers;
+namespace ScrumMovieTheater.Areas.Admin.Controllers;
 
+[Area("Admin")]
 public class HomeController : Controller
 {
     public IActionResult Index()
@@ -11,4 +10,9 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult AddMovie()
+    {
+        return View();
+    }
+    
 }

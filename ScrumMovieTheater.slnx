@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ScrumMovieTheater.API/ScrumMovieTheater.API.csproj" />
+  <Project Path="ScrumMovieTheater/ScrumMovieTheater.csproj" />
+</Solution>
