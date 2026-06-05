@@ -1,61 +1,33 @@
-@model IReadOnlyList<ScrumMovieTheater.Models.MovieViewModel>
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/Movies.css" asp-append-version="true" />
-}
+@model List<ScrumMovieTheater.Models.Movie>
 
 @{
     ViewData["Title"] = "Movies";
 }
 
-<div class="container py-4 py-lg-5">
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-4">
-        <div>
-            <h1 class="display-6 mb-1">Movies</h1>
-            <p class="text-muted mb-0">Current movies available on the website.</p>
-        </div>
+<h2>Movies</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Search))
+{
+    <div class="alert alert-info">
+        Search result: <strong>@ViewBag.Search</strong>
     </div>
+}
 
-    <div class="row">
+<div class="row">
+    @foreach (var movie in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
 
-        <!-- Left Side - Theater Picture -->
-        <div class="col-md-4 mb-4">
-            <img src="~/images/nooooodles-1337-m3th3rIQ9-w-unsplash.jpg" alt="Scrum Movie Theater" class="theater-image rounded shadow" />
-        </div>
+                <img src="@movie.ImageUrl"
+                     class="card-img-top"
+                     style="height:300px; object-fit:cover; width:100%;" />
 
-        <!-- Right Side - Movies Table -->
-        <div class="col-md-8">
-            @if (Model == null || !Model.Any())
-            {
-                <div class="alert alert-dark text-center">
-                    <p class="mb-0">No movies currently showing. Check back soon!</p>
+                <div class="card-body">
+                    <h5 class="card-title">@movie.Title</h5>
                 </div>
-            }
-            else
-            {
-                <table class="table table-dark table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Genre</th>
-                            <th>Duration</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var movie in Model)
-                        {
-                            <tr>
-                                <td class="fw-bold">@movie.Title</td>
-                                <td>@movie.Genre</td>
-                                <td>@movie.DurationHours h @movie.DurationMinutes m</td>
-                                <td>@movie.Description</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-        </div>
 
-    </div>
+            </div>
+        </div>
+    }
 </div>
