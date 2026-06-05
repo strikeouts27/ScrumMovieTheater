@@ -9,9 +9,19 @@ namespace ScrumMovieTheater.Data
             : base(options)
         {
         }
-    public DbSet<Schedule> Schedules { get; set; }
-    public DbSet<Booking> Bookings { get; set; }
-    public DbSet<Movie> Movies { get; set; }
 
+        // Add this parameterless constructor for migrations
+        public AppDbContext()
+        {
+        }
+
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
