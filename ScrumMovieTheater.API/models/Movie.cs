@@ -11,11 +11,11 @@ public partial class Movie
 
     public string Description { get; set; } = null!;
 
-    public ushort RuntimeMinutes { get; set; }
+    public int RuntimeMinutes { get; set; }
 
     public string? Genre { get; set; }
 
     public string? Rating { get; set; }
 
-    public virtual ICollection<Showtime> Showtimes { get; set; } = new List<Showtime>();
 }
+

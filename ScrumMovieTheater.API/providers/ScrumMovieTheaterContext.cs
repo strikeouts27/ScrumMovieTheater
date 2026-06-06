@@ -60,7 +60,8 @@ public partial class ScrumMovieTheaterContext : DbContext
             entity.Property(e => e.EndTime).HasColumnType("datetime");
             entity.Property(e => e.StartTime).HasColumnType("datetime");
             entity.Property(e => e.TicketPrice).HasPrecision(5);
-
+            
+            // foriegn key removed because it was causing problems with generating software. 
             //entity.HasOne(d => d.Movie).WithMany(p => p.Showtimes)
             //    .HasForeignKey(d => d.MovieId)
                 //.HasConstraintName("showtimes_ibfk_1");
