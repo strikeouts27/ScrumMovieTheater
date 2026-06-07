@@ -1,30 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using ScrumMovieTheater.Data;
-using ScrumMovieTheater.Models;
-using System.Linq;
 
 namespace ScrumMovieTheater.Controllers
 {
-    public class MoviesController : Controller
+    public class MovieController : Controller
     {
         private readonly AppDbContext _context;
 
-        public MoviesController(AppDbContext context)
+        public MovieController(AppDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index(string q)
+        public IActionResult Index()
         {
             var movies = _context.Movies.ToList();
-
-            if (!string.IsNullOrEmpty(q))
-            {
-                movies = movies
-                    .Where(m => m.Title.Contains(q, StringComparison.OrdinalIgnoreCase))
-                    .ToList();
-            }
-
             return View(movies);
         }
     }

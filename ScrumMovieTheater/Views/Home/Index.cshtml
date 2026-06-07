@@ -15,24 +15,66 @@
     </div>
 </section>
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Movies" asp-action="Index">Movies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Showtimes" asp-action="Index">Showtimes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Booking" asp-action="Tickets">Tickets</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-                </li>
-            </ul>
+<!-- Now Showing Section -->
+<section class="py-5 bg-black text-white">
+    <div class="container">
+        <h2 class="fw-bold section-title border-bottom pb-2 mb-4">Now Showing</h2>
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="card movie-card bg-dark text-white h-100 shadow">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎬</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Movie Title</h5>
+                        <p class="card-text text-muted small">Action | 2h 15m</p>
+                        <p class="card-text small text-light">An epic adventure that will keep you on the edge of your seat.</p>
+                        <a asp-controller="Tickets" asp-action="Index" class="btn btn-sm w-100 mt-2 ticket-btn">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card movie-card bg-dark text-white h-100 shadow">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎬</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Movie Title</h5>
+                        <p class="card-text text-muted small">Drama | 1h 58m</p>
+                        <p class="card-text small text-light">A gripping story of love, loss and redemption.</p>
+                        <a asp-controller="Tickets" asp-action="Index" class="btn btn-sm w-100 mt-2 ticket-btn">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card movie-card bg-dark text-white h-100 shadow">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎬</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Movie Title</h5>
+                        <p class="card-text text-muted small">Comedy | 1h 45m</p>
+                        <p class="card-text small text-light">A hilarious comedy that will have you laughing non stop.</p>
+                        <a asp-controller="Tickets" asp-action="Index" class="btn btn-sm w-100 mt-2 ticket-btn">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card movie-card bg-dark text-white h-100 shadow">
+                    <div class="poster-placeholder d-flex align-items-center justify-content-center">
+                        <span class="fs-1">🎬</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Movie Title</h5>
+                        <p class="card-text text-muted small">Thriller | 2h 05m</p>
+                        <p class="card-text small text-light">A heart pounding thriller that will leave you breathless.</p>
+                        <a asp-controller="Tickets" asp-action="Index" class="btn btn-sm w-100 mt-2 ticket-btn">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Coming Soon Section -->
 <section class="py-5 bg-dark text-white">
