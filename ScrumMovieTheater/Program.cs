@@ -1,5 +1,6 @@
 using ScrumMovieTheater.Data;
 using Microsoft.EntityFrameworkCore;
+using ScrumMovieTheater.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
