@@ -1,6 +1,6 @@
-namespace ScrumMovieTheater.Models
+﻿namespace ScrumMovieTheater.DTOs
 {
-    public class Movie
+    public class MovieDTO
     {
         public int Id { get; set; }
         public required string Title { get; set; }
