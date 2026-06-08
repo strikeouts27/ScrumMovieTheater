@@ -1,0 +1,12 @@
+
+1. Create movies script for the table with test data. 
+2. Add the movie script to the solution. (Team mates can than run the script and have the same database).
+3. Add it to entity framework. (dbContext)
+4. hook up the api  
+
+Entity Checklist
+
+Tables are entities. 
+
+1. Add the entity to the DbSet context 
+2. 
