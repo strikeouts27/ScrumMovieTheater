@@ -26,6 +26,8 @@ public partial class ScrumMovieTheaterContext : DbContext
 
     public virtual DbSet<Showtime> Showtimes { get; set; }
 
+    // TO DO THEATER
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         if (!optionsBuilder.IsConfigured) {
             
