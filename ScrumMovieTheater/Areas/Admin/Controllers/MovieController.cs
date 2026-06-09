@@ -7,14 +7,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers;
 [Area("Admin")]
 public class MovieController : Controller
 {
-    private readonly IMovieCatalog movieCatalog;
 
-    public MovieController(IMovieCatalog movieCatalog)
-    {
-        this.movieCatalog = movieCatalog;
-    }
-
-// http://localhost:5013/Admin/Movie/AddMovie 
     [HttpGet]
     public IActionResult AddMovie()
     {
@@ -30,7 +23,7 @@ public class MovieController : Controller
             return View(model);
         }
 
-        movieCatalog.Add(model);
+        //movieCatalog.Add(model);
 
         return RedirectToAction("Index", "Movies");
     }
