@@ -14,7 +14,32 @@ public class MovieController : Controller
         this.movieCatalog = movieCatalog;
     }
 
-// http://localhost:5013/Admin/Movie/AddMovie 
+   
+    [HttpGet]
+    public IActionResult Manager()
+    {
+        return View();
+    }
+
+   
+    [HttpGet]
+    public IActionResult EditMovie(int id)
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult EditMovie(MovieViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+        return RedirectToAction("Manager");
+    }
+
+
     [HttpGet]
     public IActionResult AddMovie()
     {
