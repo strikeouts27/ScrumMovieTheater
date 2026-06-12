@@ -11,14 +11,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// how to make Program.cs aware of the MovieDataService class. 
+
 builder.Services.AddHttpClient("ScrumMovieTheaterAPI", client =>
 {
-
-    client.BaseAddress = new Uri("http://localhost:5013/");
+    // The BaseAddress allows you to specify what the base address is for the entire project.
+    // The base address is the staring point for the api. 
+    client.BaseAddress = new Uri("http://localhost:5013/api/");
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
+// how to make Program.cs aware of the MovieDataService class. 
 builder.Services.AddScoped<MovieDataService>();
 
 
