@@ -1,4 +1,4 @@
-@model List<ScrumMovieTheater.Models.Movie>
+@model MovieListViewModel
 
 @{
     ViewData["Title"] = "Movies";
@@ -14,7 +14,7 @@
 }
 
 <div class="row">
-    @foreach (var movie in Model)
+    @foreach (var movie in Model.MovieList)
     {
         <div class="col-md-4">
             <div class="card mb-3">

@@ -36,7 +36,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpPut("{id}")]
         public async Task Update(int id, [FromBody] Movie updatedMovie) 
         {
-            var movieToUpdate = _movieContext.Movies.FirstOrDefault(m => m.MovieId.Equals(id));
+            var movieToUpdate = _movieContext.Movies.FirstOrDefault(m => m.Id.Equals(id));
             if (movieToUpdate == null)
                 return;
             // do not tell asp.net to update id fields. let the database handle that. 
@@ -55,7 +55,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpDelete]
         public async Task Delete(int id)
         {
-            var movieToDelete = _movieContext.Movies.FirstOrDefault(p => p.MovieId.Equals(id));
+            var movieToDelete = _movieContext.Movies.FirstOrDefault(p => p.Id.Equals(id));
             if (movieToDelete == null)
                 return;
             _movieContext.Movies.Remove(movieToDelete);

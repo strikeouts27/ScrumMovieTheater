@@ -39,7 +39,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpPut("{id}")]
         public async Task Update(int id, [FromBody] Showtime updatedShowtime)
         {
-            var showtimeToUpdate = _showtimeContext.Showtimes.FirstOrDefault(s => s.ShowtimeId.Equals(id));
+            var showtimeToUpdate = _showtimeContext.Showtimes.FirstOrDefault(s => s.Id.Equals(id));
             if (showtimeToUpdate == null)
                 return;
 
@@ -56,7 +56,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpDelete]
         public async Task Delete(int id)
         {
-            var showtimeToDelete = _showtimeContext.Showtimes.FirstOrDefault(s => s.ShowtimeId.Equals(id));
+            var showtimeToDelete = _showtimeContext.Showtimes.FirstOrDefault(s => s.Id.Equals(id));
             if (showtimeToDelete == null)
                 return;
             _showtimeContext.Showtimes.Remove(showtimeToDelete);

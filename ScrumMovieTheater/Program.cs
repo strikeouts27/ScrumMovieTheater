@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient("ScrumMovieTheaterAPI", client =>
 {
 
-    client.BaseAddress = new Uri("http://localhost:7093/");
+    client.BaseAddress = new Uri("http://localhost:5013/");
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
@@ -53,5 +53,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
 
 app.Run();

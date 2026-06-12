@@ -5,7 +5,7 @@ namespace ScrumMovieTheater.API.models;
 
 public class Theater
 {
-    public int TheaterId { get; set; }
+    public int idTheater { get; set; }
     public string Name { get; set; }
 
     public string Address { get; set; }

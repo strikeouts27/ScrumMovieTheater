@@ -41,7 +41,7 @@ public partial class ScrumMovieTheaterContext : DbContext
     {
         modelBuilder.Entity<Movie>(entity =>
         {
-            entity.HasKey(e => e.MovieId).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("movies");
 
@@ -53,7 +53,7 @@ public partial class ScrumMovieTheaterContext : DbContext
 
         modelBuilder.Entity<Showtime>(entity =>
         {
-            entity.HasKey(e => e.ShowtimeId).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("showtimes");
 
@@ -71,7 +71,7 @@ public partial class ScrumMovieTheaterContext : DbContext
 
         modelBuilder.Entity<Theater>(entity =>
         {
-            entity.HasKey(e => e.TheaterId).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("theaters");
 

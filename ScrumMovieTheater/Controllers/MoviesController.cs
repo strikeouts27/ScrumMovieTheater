@@ -37,12 +37,14 @@ namespace ScrumMovieTheater.Controllers
         2. create a constructor to create the object that can hold the data. 
         3. We want to create a get route so we specify the HTTP GET tag/attribute. 
         4. We 
-         
+        */ 
 
          
-         */
+        
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [Route("Index")]
+        // This is a get method 
+        public async Task<IActionResult> Index()
         {
             List<MovieDTO> movies = await _movieDataService.GetMoviesAsync();
             // we use <> for temlates. 
@@ -51,26 +53,6 @@ namespace ScrumMovieTheater.Controllers
             // it should now return the movieTemplate for movie View. 
             return View(movieTemplate); 
         }
-
-        public IActionResult Index()
-        {
-            var movies = new List<Movie>
-            {
-                new Movie
-                {
-                    Title = "John Wick",
-                    Description = "the john wick movie"
-                },
-                new Movie
-                {
-                    Title = "The Pokemon movie",
-                    Description = "the one where mewtwo gets angy"
-                }
-            };
-                    return View(movies);
-        }
-
-
 
     }
 }
