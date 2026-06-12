@@ -28,6 +28,8 @@ public partial class ScrumMovieTheaterContext : DbContext
 
     public virtual DbSet<Theater> Theaters { get; set; }
 
+    public virtual DbSet<Showroom> Showrooms { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         if (!optionsBuilder.IsConfigured) {
             
