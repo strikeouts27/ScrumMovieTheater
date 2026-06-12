@@ -29,7 +29,7 @@ public class MovieDataService
     }
     // services acts as a bridge between the api and the controller. 
 
-    public async Task<List<MovieDTO>> GetEventsAsync()
+    public async Task<List<MovieDTO>> GetMoviesAsync()
     {
         // See the swagger get request executed. you should see a request url 
         // this code will say go into the request url and grab everything in the url that is before the slashes. 

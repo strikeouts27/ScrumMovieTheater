@@ -26,7 +26,7 @@ public partial class ScrumMovieTheaterContext : DbContext
 
     public virtual DbSet<Showtime> Showtimes { get; set; }
 
-    // TO DO THEATER
+    public virtual DbSet<Theater> Theaters { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         if (!optionsBuilder.IsConfigured) {
@@ -67,6 +67,16 @@ public partial class ScrumMovieTheaterContext : DbContext
             //entity.HasOne(d => d.Movie).WithMany(p => p.Showtimes)
             //    .HasForeignKey(d => d.MovieId)
                 //.HasConstraintName("showtimes_ibfk_1");
+        });
+
+        modelBuilder.Entity<Theater>(entity =>
+        {
+            entity.HasKey(e => e.TheaterId).HasName("PRIMARY");
+
+            entity.ToTable("theaters");
+
+            entity.Property(e => e.Name).HasMaxLength(255);
+            entity.Property(e => e.Address).HasMaxLength(500);
         });
 
         OnModelCreatingPartial(modelBuilder);

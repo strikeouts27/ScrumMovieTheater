@@ -1,5 +1,6 @@
 using ScrumMovieTheater.Data;
 using Microsoft.EntityFrameworkCore;
+using ScrumMovieTheater.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// how to make Program.cs aware of the MovieDataService class. 
+builder.Services.AddHttpClient("ScrumMovieTheaterAPI", client =>
+{
+
+    client.BaseAddress = new Uri("http://localhost:7093/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddScoped<MovieDataService>();
+
 
 var app = builder.Build();
 

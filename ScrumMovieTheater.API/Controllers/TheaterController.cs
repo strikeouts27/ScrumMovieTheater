@@ -23,7 +23,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpGet]
         public List<Theater> Get()
         {
-            return _theaterContext.Theater.ToList();
+            return _theaterContext.Theaters.ToList();
         }
     }
 }

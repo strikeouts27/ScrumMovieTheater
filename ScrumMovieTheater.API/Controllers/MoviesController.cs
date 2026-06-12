@@ -64,7 +64,4 @@ namespace ScrumMovieTheater.API.Controllers
 
 
     }
-
-   
-    
 }
