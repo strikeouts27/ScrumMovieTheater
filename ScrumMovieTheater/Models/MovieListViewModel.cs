@@ -25,6 +25,10 @@ namespace ScrumMovieTheater.Models
                         Title = movie.Title,
                         Description = movie.Description,
                         ReleaseDate = movie.ReleaseDate,
+                        // this specifies the url for using this image in the front end
+                        // and how the data is in the database is how this code will interpret what to do. 
+                        // for example JohnWick does not work because the database has it as John Wick
+                        // John Wick.jpg is the correct answer.
                         ImageUrl = movie.Title + ".jpg",
 
                     }
