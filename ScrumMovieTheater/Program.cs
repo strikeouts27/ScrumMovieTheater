@@ -1,11 +1,29 @@
+using ScrumMovieTheater.Data;
+using Microsoft.EntityFrameworkCore;
 using ScrumMovieTheater.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IMovieCatalog, InMemoryMovieCatalog>();
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddHttpClient("ScrumMovieTheaterAPI", client =>
+{
+    // The BaseAddress allows you to specify what the base address is for the entire project.
+    // The base address is the staring point for the api. 
+    client.BaseAddress = new Uri("http://localhost:5013/api/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+// how to make Program.cs aware of the MovieDataService class. 
+builder.Services.AddScoped<MovieDataService>();
+
 
 var app = builder.Build();
 
@@ -13,15 +31,22 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+
+// Swagger UI (Development only)
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.RoutePrefix = "swagger";
+    });
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapStaticAssets();
 
 app.MapControllerRoute(
@@ -30,8 +55,8 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllers();
 
 app.Run();

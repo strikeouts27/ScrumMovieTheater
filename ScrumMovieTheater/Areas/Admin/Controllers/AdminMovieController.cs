@@ -5,11 +5,11 @@ using ScrumMovieTheater.Services;
 namespace ScrumMovieTheater.Areas.Admin.Controllers;
 
 [Area("Admin")]
-public class MovieController : Controller
+public class AdminMovieController : Controller
 {
     private readonly IMovieCatalog movieCatalog;
 
-    public MovieController(IMovieCatalog movieCatalog)
+    public AdminMovieController(IMovieCatalog movieCatalog)
     {
         this.movieCatalog = movieCatalog;
     }
@@ -55,8 +55,8 @@ public class MovieController : Controller
             return View(model);
         }
 
-        movieCatalog.Add(model);
+        //movieCatalog.Add(model);
 
-        return RedirectToAction("Index", "Movies");
+        return RedirectToAction("Index", "AdminMovies");
     }
 }

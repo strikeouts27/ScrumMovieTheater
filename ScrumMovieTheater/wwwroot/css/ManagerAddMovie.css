@@ -2,41 +2,59 @@
     color: #e50914;
     font-family: Georgia, serif;
     letter-spacing: 1px;
-}
+    }
 
 .manager-card-header {
     background-color: #e50914;
     color: white;
-    font-weight: bold;
-}
+        font-weight: bold;
+    }
 
 .manager-add-btn {
     background-color: #e50914;
     color: white;
     border: none;
-}
+    }
 
 .manager-add-btn:hover {
     background-color: #b8070f;
-    color: white;
-}
+        color: white;
+        cursor: pointer;
+    }
+
+    .showtime-btn {
+        background-color: #0066cc;
+        margin-bottom: 15px;
+    }
+
+    .add-btn {
+        background-color: green;
+    }
+
+    .edit-btn {
+        background-color: orange;
+    }
+
+    .delete-btn {
+        background-color: red;
+    }
 
 .manager-edit-btn {
     background-color: #ffc107;
     color: black;
     border: none;
-}
+    }
 
 .manager-edit-btn:hover {
     background-color: #e0a800;
     color: black;
-}
+    }
 
 .manager-delete-btn {
     background-color: #dc3545;
-    color: white;
+        color: white;
     border: none;
-}
+    }
 
 .manager-delete-btn:hover {
     background-color: #a71d2a;
