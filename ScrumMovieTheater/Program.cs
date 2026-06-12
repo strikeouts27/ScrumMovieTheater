@@ -1,5 +1,6 @@
 using ScrumMovieTheater.Data;
 using Microsoft.EntityFrameworkCore;
+using ScrumMovieTheater.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddHttpClient("ScrumMovieTheaterAPI", client =>
+{
+    // The BaseAddress allows you to specify what the base address is for the entire project.
+    // The base address is the staring point for the api. 
+    client.BaseAddress = new Uri("http://localhost:5013/api/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+// how to make Program.cs aware of the MovieDataService class. 
+builder.Services.AddScoped<MovieDataService>();
+
 
 var app = builder.Build();
 
@@ -41,5 +55,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
 
 app.Run();

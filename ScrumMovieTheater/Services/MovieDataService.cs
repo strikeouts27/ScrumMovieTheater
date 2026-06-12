@@ -29,7 +29,7 @@ public class MovieDataService
     }
     // services acts as a bridge between the api and the controller. 
 
-    public async Task<List<MovieDTO>> GetEventsAsync()
+    public async Task<List<MovieDTO>> GetMoviesAsync()
     {
         // See the swagger get request executed. you should see a request url 
         // this code will say go into the request url and grab everything in the url that is before the slashes. 
@@ -40,6 +40,7 @@ public class MovieDataService
         // going out to the api controller and waiting for information.
         // if the method is asking for information from something outside of the program that is a sign it is a get request. This projects program and API are in different programs. 
         // responses are not HTTP Request types responses are a type of package getting re
+        // TODO HTTP client is not using the base address for some reason. 
         var response = await _client.GetAsync("movies");
         // this will ensure that the response is successful, if not it will throw an error. FAIL FAST 
         response.EnsureSuccessStatusCode();

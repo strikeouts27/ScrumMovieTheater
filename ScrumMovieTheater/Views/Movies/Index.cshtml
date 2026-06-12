@@ -1,4 +1,4 @@
-@model List<ScrumMovieTheater.Models.Movie>
+@model MovieListViewModel
 
 @{
     ViewData["Title"] = "Movies";
@@ -14,12 +14,20 @@
 }
 
 <div class="row">
-    @foreach (var movie in Model)
+    @foreach (var movie in Model.MovieList)
     {
         <div class="col-md-4">
             <div class="card mb-3">
-
-                <img src="@movie.ImageUrl"
+                <!-- use the atsymbolUrl.Content -> puts the url stuff in front for you. It makes sure that your url has the /wwwroot/images/whateverYouWant -->
+                <!-- starting from the wwwroot use pwd and get the url example -> <img src="wwwroot/images/MovieCoverArt/John Wick.jpg" /> -->
+                <!-- Url.Content() specify where the content is. in this case where the images folder is. -->
+                <!-- Start by specifying the folder where the data is. -->
+                <!-- movie.ImageUrl what we specified in the database-->
+                <!-- what movie.ImageUrl is supposed to be is what we specify in models for the corresponding attribute.-->
+                <!-- Being in the images folder is not enough make certain it is in the actual folder you specify.-->
+                <!-- We must use the ~/ to start insturctions. -->
+                
+                <img src="@Url.Content("~/images/MovieCoverArt/" + movie.ImageUrl)"
                      class="card-img-top"
                      style="height:300px; object-fit:cover; width:100%;" />
 

@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ScrumMovieTheater.Data;
+using ScrumMovieTheater.DTOs;
 using ScrumMovieTheater.Models;
+using ScrumMovieTheater.Services;
+using Theater;
 
 namespace ScrumMovieTheater.Controllers
 {
@@ -13,22 +16,43 @@ namespace ScrumMovieTheater.Controllers
         //    //_context = context;
         //}
 
-        public IActionResult Index()
+        private readonly MovieDataService _movieDataService;
+
+        public MoviesController(MovieDataService movieDataService)
         {
-            var movies = new List<Movie>
-            {
-                new Movie
-                {
-                    Title = "John Wick",
-                    Description = "the john wick movie"
-                },
-                new Movie
-                {
-                    Title = "The Pokemon movie",
-                    Description = "the one where mewtwo gets angy"
-                }
-            };
-                    return View(movies);
+            _movieDataService = movieDataService; 
         }
+
+
+        // Create a constructor using a service that you have to create for method usage.
+        // write the service 
+        // than come back the HTTP method and establish a link between the two sections. 
+        // using that link call the method that you wrote in the service for retreiving information. 
+        // if writing from front to back you will be using stuff that doesn't exist yet. 
+
+
+        // GET ALL() && GetById(id)
+        /* 
+        1. create a varaible that can hold the container. 
+        2. create a constructor to create the object that can hold the data. 
+        3. We want to create a get route so we specify the HTTP GET tag/attribute. 
+        4. We 
+        */ 
+
+         
+        
+        [HttpGet]
+        [Route("Index")]
+        // This is a get method 
+        public async Task<IActionResult> Index()
+        {
+            List<MovieDTO> movies = await _movieDataService.GetMoviesAsync();
+            // we use <> for temlates. 
+            // new movie list view model. 1. use a viewmodel type 2. name the variable. 3 use the new keyword 4. call the list of movies, by calling the constructor you create an object with the infomration you need. 
+            MovieListViewModel movieTemplate = new MovieListViewModel(movies); 
+            // it should now return the movieTemplate for movie View. 
+            return View(movieTemplate); 
+        }
+
     }
 }

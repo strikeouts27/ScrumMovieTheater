@@ -5,7 +5,7 @@ namespace ScrumMovieTheater.API.models;
 
 public partial class Showtime
 {
-    public int ShowtimeId { get; set; }
+    public int idShowtime { get; set; }
 
     public int MovieId { get; set; }
 

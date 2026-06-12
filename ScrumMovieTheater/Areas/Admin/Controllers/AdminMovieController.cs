@@ -5,7 +5,7 @@ using ScrumMovieTheater.Services;
 namespace ScrumMovieTheater.Areas.Admin.Controllers;
 
 [Area("Admin")]
-public class MovieController : Controller
+public class AdminMovieController : Controller
 {
 
     [HttpGet]
@@ -25,6 +25,6 @@ public class MovieController : Controller
 
         //movieCatalog.Add(model);
 
-        return RedirectToAction("Index", "Movies");
+        return RedirectToAction("Index", "AdminMovies");
     }
 }

@@ -5,16 +5,20 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
+      // the api folder and this is the url 
       "applicationUrl": "http://localhost:5013",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+
     "https": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7095/swagger/index.html" ,
+      // launch the browser at this host point.
+      "launchUrl": "https://localhost:7095/swagger/index.html",
+      // web server is inside of a server.  the web server is a program that is running on the server of a program. 
       "applicationUrl": "https://localhost:7095;http://localhost:5013",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

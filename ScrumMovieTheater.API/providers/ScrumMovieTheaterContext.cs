@@ -26,7 +26,7 @@ public partial class ScrumMovieTheaterContext : DbContext
 
     public virtual DbSet<Showtime> Showtimes { get; set; }
 
-    // TO DO THEATER
+    public virtual DbSet<Theater> Theaters { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         if (!optionsBuilder.IsConfigured) {
@@ -41,7 +41,7 @@ public partial class ScrumMovieTheaterContext : DbContext
     {
         modelBuilder.Entity<Movie>(entity =>
         {
-            entity.HasKey(e => e.MovieId).HasName("PRIMARY");
+            entity.HasKey(e => e.idMovie).HasName("PRIMARY");
 
             entity.ToTable("movies");
 
@@ -53,7 +53,7 @@ public partial class ScrumMovieTheaterContext : DbContext
 
         modelBuilder.Entity<Showtime>(entity =>
         {
-            entity.HasKey(e => e.ShowtimeId).HasName("PRIMARY");
+            entity.HasKey(e => e.idShowtime).HasName("PRIMARY");
 
             entity.ToTable("showtimes");
 
@@ -67,6 +67,16 @@ public partial class ScrumMovieTheaterContext : DbContext
             //entity.HasOne(d => d.Movie).WithMany(p => p.Showtimes)
             //    .HasForeignKey(d => d.MovieId)
                 //.HasConstraintName("showtimes_ibfk_1");
+        });
+
+        modelBuilder.Entity<Theater>(entity =>
+        {
+            entity.HasKey(e => e.idTheater).HasName("PRIMARY");
+
+            entity.ToTable("theaters");
+
+            entity.Property(e => e.Name).HasMaxLength(255);
+            entity.Property(e => e.Address).HasMaxLength(500);
         });
 
         OnModelCreatingPartial(modelBuilder);
