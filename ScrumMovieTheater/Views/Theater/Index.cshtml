@@ -1,7 +1,23 @@
-@model TheaterViewModel
+@model TheaterListViewModel;
+
 <div class="container">
     <h1>Welcome to the Theater!</h1>
     <p>Enjoy the latest movies and shows at our theater.</p>
+
+    @Model.TheaterList[0].Name
+    @Model.TheaterList[1].Name
+    @Model.TheaterList[2].Name
+    @Model.TheaterList[3].Name
+    @Model.TheaterList[4].Name
+
+    @Model.TheaterList[0].Address
+    @Model.TheaterList[1].Address
+    @Model.TheaterList[2].Address
+    @Model.TheaterList[3].Address
+    @Model.TheaterList[4].Address
+    
+
+    @Model.TheaterList[0].Description
 
     <div class="row">
 

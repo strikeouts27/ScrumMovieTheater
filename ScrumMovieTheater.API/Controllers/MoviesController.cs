@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using ScrumMovieTheater.API.Models;
 using ScrumMovieTheater.DTOs;
 using ScrumMovieTheater.API.Providers;
-using ScrumMovieTheater.API.Controllers;
 
 
 namespace ScrumMovieTheater.API.Controllers
