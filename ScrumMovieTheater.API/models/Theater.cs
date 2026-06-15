@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ScrumMovieTheater.API.Models;
+namespace ScrumMovieTheater.API.models;
 
 public partial class Theater
 {
