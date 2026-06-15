@@ -7,17 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Admin\Views\Movie\Manager.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Documentation\Whiteboards\gitBranches.PNG" />
     <Content Include="Documentation\Whiteboards\GitExplained.PNG" />
     <Content Include="Documentation\Whiteboards\ServerLockout.PNG" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Admin\Views\Movie\Manager.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
