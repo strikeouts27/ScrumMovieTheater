@@ -1,0 +1,26 @@
+.login-wrapper {
+    min-height: 80vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #e50914 !important;
+}
+
+.login-header {
+    background-color: #e50914;
+    color: white;
+    padding: 1.5rem;
+}
+
+.login-btn {
+    background-color: #e50914;
+    color: white;
+    border: none;
+}
+
+.login-btn:hover {
+    background-color: #b8070f;
+    color: white;
+}
