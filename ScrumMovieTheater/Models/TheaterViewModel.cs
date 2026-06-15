@@ -1,8 +1,8 @@
 using ScrumMovieTheater.DTOs;
 using System.Reflection; 
 
-namespace ScrumMovieTheater.Models 
-{
+namespace ScrumMovieTheater.Models;
+
     // This MovieListViewModel will contain a list of Movies that are of the same type
 
     // as the class below MovieListItemViewModel.
@@ -23,13 +23,14 @@ namespace ScrumMovieTheater.Models
                         Id = theater.Id,
                         Name = theater.Name,
                         Address = theater.Address,
-                        Description = theater.Description,
+                    Description = theater.Description,
                     }
                     );
             }
 
         }
     }
+    // These properties must match exactly what is in the database tables. 
     public class TheaterViewModel()
     {
         public int Id { get; set; }
@@ -37,4 +38,3 @@ namespace ScrumMovieTheater.Models
         public required string Address { get; set; }
         public required string Description { get; set; }
     }
-}

@@ -1,8 +1,8 @@
-﻿namespace ScrumMovieTheater.Services;
-
-using ScrumMovieTheater.DTOs;
+﻿using ScrumMovieTheater.DTOs;
 using Newtonsoft.Json;
-using System.Text.Json.Serialization; 
+using System.Text.Json.Serialization;
+
+namespace ScrumMovieTheater.Services;
 
 public class TheaterDataService
 {

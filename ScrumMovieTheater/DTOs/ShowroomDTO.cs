@@ -1,4 +1,5 @@
-﻿namespace ScrumMovieTheater.API.DTOs
+﻿namespace ScrumMovieTheater.DTOs
+    // DTO's should have copies in the main project and the api. 
 {
     public class ShowroomDTO
     {
