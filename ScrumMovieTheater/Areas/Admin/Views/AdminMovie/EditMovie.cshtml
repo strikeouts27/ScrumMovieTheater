@@ -1,0 +1,87 @@
+@{
+    ViewData["Title"] = "Edit Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ManagerAddMovie.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<div class="container py-4 py-lg-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-8">
+
+            <div class="mb-3">
+                <a href="/Admin/Movie/Manager" class="btn btn-outline-secondary btn-sm">← Back to Manager</a>
+            </div>
+
+            <div class="card border-0 shadow-sm bg-dark text-white">
+                <div class="card-header manager-card-header py-3">
+                    <h1 class="h5 mb-0">Edit Movie</h1>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-area="Admin" asp-controller="AdminMovie" asp-action="EditMovie" method="post" novalidate>
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input name="Title" class="form-control bg-dark text-white border-secondary" placeholder="Enter movie title" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="Description" class="form-control bg-dark text-white border-secondary" rows="4" placeholder="Enter description" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Genre</label>
+                            <select name="Genre" class="form-select bg-dark text-white border-secondary" required>
+                                <option value="">Choose a genre</option>
+                                <option>Action</option>
+                                <option>Comedy</option>
+                                <option>Drama</option>
+                                <option>Horror</option>
+                                <option>Science Fiction</option>
+                                <option>Fantasy</option>
+                                <option>Thriller</option>
+                                <option>Romance</option>
+                                <option>Documentary</option>
+                                <option>Western</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="movieDuration" class="form-label">Movie Duration</label>
+                            <div class="input-group">
+                                <input type="number"
+                                       class="form-control bg-dark text-white border-secondary"
+                                       id="movieDuration"
+                                       name="DurationInMinutes"
+                                       min="1"
+                                       max="600"
+                                       placeholder="e.g., 165"
+                                       required>
+                                <span class="input-group-text bg-dark text-white border-secondary">minutes</span>
+                            </div>
+                            <div class="form-text text-muted">Enter the total duration in minutes (e.g., 2h 45m is 165 minutes).</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Image URL</label>
+                            <input type="text" name="ImageUrl" class="form-control bg-dark text-white border-secondary" placeholder="Enter image URL (optional)" />
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <a href="/Admin/Movie/Manager" class="btn btn-outline-secondary">Cancel</a>
+                            <button type="submit" class="btn manager-add-btn">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

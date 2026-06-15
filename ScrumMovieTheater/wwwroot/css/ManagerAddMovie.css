@@ -1,59 +1,23 @@
-﻿body {
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+.manager-title {
+    color: #e50914;
+    font-family: Georgia, serif;
+    letter-spacing: 1px;
     }
 
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #8B0000;
-        padding: 30px;
-    }
-
-    .container {
-        max-width: 1000px;
-        margin: auto;
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    .card {
-        background-color: white;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-        margin-bottom: 15px;
-    }
-
-    label {
-        display: block;
-        margin-top: 10px;
+.manager-card-header {
+    background-color: #e50914;
+    color: white;
         font-weight: bold;
     }
 
-    input,
-    select {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+.manager-add-btn {
+    background-color: #e50914;
+    color: white;
+    border: none;
     }
 
-    button {
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
+.manager-add-btn:hover {
+    background-color: #b8070f;
         color: white;
         cursor: pointer;
     }
@@ -75,25 +39,24 @@
         background-color: red;
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
+.manager-edit-btn {
+    background-color: #ffc107;
+    color: black;
+    border: none;
     }
 
-    th,
-    td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: center;
+.manager-edit-btn:hover {
+    background-color: #e0a800;
+    color: black;
     }
 
-    th {
-        background-color: #333;
+.manager-delete-btn {
+    background-color: #dc3545;
         color: white;
+    border: none;
     }
 
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+.manager-delete-btn:hover {
+    background-color: #a71d2a;
+    color: white;
 }

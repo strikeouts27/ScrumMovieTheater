@@ -16,3 +16,16 @@
 .footer-link {
     color: #e50914;
 }
+.manager-portal-btn {
+    background-color: #e50914;
+    color: white !important;
+    border: none;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    padding: 5px 12px;
+}
+
+.manager-portal-btn:hover {
+    background-color: #b8070f;
+    color: white !important;
+}
