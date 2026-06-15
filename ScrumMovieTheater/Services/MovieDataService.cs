@@ -38,9 +38,8 @@ public class MovieDataService
         // this line is calling code that we wrote in the api. 
         // this is where we are telling our empowered object to grab event data from the api controller.
         // going out to the api controller and waiting for information.
-        // if the method is asking for information from something outside of the program that is a sign it is a get request. This projects program and API are in different programs. 
-        // responses are not HTTP Request types responses are a type of package getting re
-        // TODO HTTP client is not using the base address for some reason. 
+        // if the method is asking for information from something outside of the program that is a sign that you are using or creating a get request. This project and the API are in different programs. This is why we cannot import things from different programs. 
+        // responses are not HTTP Request types. responses are the answers to the requests and the information contained to answer the requests information. 
         var response = await _client.GetAsync("movies");
         // this will ensure that the response is successful, if not it will throw an error. FAIL FAST 
         response.EnsureSuccessStatusCode();
@@ -80,11 +79,10 @@ public class MovieDataService
         // await means this step of the process must be fully complete before the next code can be run.
         // if the await lock was not on this code than the code could continue running and not verfiy with the response.EnsureSccuessStatusCode(); 
         // PutAsync will fire off code on its own. So if the await lock was not put on there than the code would fire off and the ensure status code check would not run. 
-        // look at await as if it were in a view of multiple methods working at once NOT from a standard way of viewing the method from top to bottom. look at the different methods are running as once.  
+        // look at await as if it were in a view of multiple methods working at once NOT from a standard way of viewing a single method where the programmer considers the order of operations being from the standpoint of reading from top to bottom. instead look at async different methods as running all at once.  you need to understand when steps need to be completed before other methods run. 
         // await should be used as a timing lock because asp.net will follow your instructions exactly and will run checks asap or instantley and the task that you give it takes more time than instant gratifiaction. 
-        // await makes certain that the task is given sufficent time to do what it needs to do before other code like ensure success status code does. 
-        // there is also a multi request viewpoint for these things. for example if i wanted to run it non async and update 50 records than 50 records would open individually and process at two seconds each. 
-        // but if i have async than 50 records can be opened at once and the operation can run all 50 times at the same time for just 2 seconds saving an increidble amount of time. 
+        // there is also a multi request viewpoint/scope view for these things. for example if i wanted to run this method as non async and update 50 records than 50 records would need to be opened individually and process at two seconds each. 
+        // but if i have async than 50 records can be opened at once and the operation can run all 50 times at the same time for each record and resolve everthing in just 2 seconds saving an increidble amount of time. 
 
         var response = await _client.PutAsync("movies", new StringContent(jeventDTO, System.Text.Encoding.UTF8, "application/json"));
 

@@ -14,6 +14,7 @@ namespace ScrumMovieTheater.Models
         // this code converts the DTO's into a view model format that the views can use.
         public MovieListViewModel(List<MovieDTO> movieDTOs)
         {
+            // we place the newly created object here. 
             MovieList = new List<MovieListItemViewModel>();
              
             foreach(var movie in movieDTOs) {

@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ScrumMovieTheater.API.models;
-using ScrumMovieTheater.API.providers;
+using ScrumMovieTheater.API.Models;
 using ScrumMovieTheater.DTOs;
+using ScrumMovieTheater.API.Providers;
+
 
 namespace ScrumMovieTheater.API.Controllers
 {
@@ -36,7 +37,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpPut("{id}")]
         public async Task Update(int id, [FromBody] Movie updatedMovie) 
         {
-            var movieToUpdate = _movieContext.Movies.FirstOrDefault(m => m.idMovie.Equals(id));
+            var movieToUpdate = _movieContext.Movies.FirstOrDefault(m => m.IdMovie.Equals(id));
             if (movieToUpdate == null)
                 return;
             // do not tell asp.net to update id fields. let the database handle that. 
@@ -55,7 +56,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpDelete]
         public async Task Delete(int id)
         {
-            var movieToDelete = _movieContext.Movies.FirstOrDefault(p => p.idMovie.Equals(id));
+            var movieToDelete = _movieContext.Movies.FirstOrDefault(p => p.IdMovie.Equals(id));
             if (movieToDelete == null)
                 return;
             _movieContext.Movies.Remove(movieToDelete);
