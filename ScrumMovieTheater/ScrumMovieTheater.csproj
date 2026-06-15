@@ -7,17 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Admin\Views\Movie\Manager.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Documentation\Whiteboards\gitBranches.PNG" />
     <Content Include="Documentation\Whiteboards\GitExplained.PNG" />
     <Content Include="Documentation\Whiteboards\ServerLockout.PNG" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Admin\Views\Movie\Manager.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +25,10 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="10.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
 
 </Project>

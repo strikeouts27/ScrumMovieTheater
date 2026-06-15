@@ -7,12 +7,6 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers;
 [Area("Admin")]
 public class AdminMovieController : Controller
 {
-    private readonly IMovieCatalog movieCatalog;
-    public MovieController(IMovieCatalog movieCatalog)
-    {
-        this.movieCatalog = movieCatalog;
-    }
-
    
     [HttpGet]
     public IActionResult Manager()
