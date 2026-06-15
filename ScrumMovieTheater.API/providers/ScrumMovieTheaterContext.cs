@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ScrumMovieTheater.API.Models;
 
-namespace ScrumMovieTheater.API.providers;
+namespace ScrumMovieTheater.API.Providers;
 
 public partial class ScrumMovieTheaterContext : DbContext
 {
@@ -25,7 +25,8 @@ public partial class ScrumMovieTheaterContext : DbContext
     public virtual DbSet<Theater> Theaters { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySQL("Name=ConnectionStrings:DefaultConnection");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySQL("server=localhost;port=3306;database=ScrumMovieTheater;uid=strikeouts27;password=Baseball100!!");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

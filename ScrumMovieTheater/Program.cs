@@ -23,6 +23,9 @@ builder.Services.AddHttpClient("ScrumMovieTheaterAPI", client =>
 // how to make Program.cs aware of the MovieDataService class. 
 builder.Services.AddScoped<MovieDataService>();
 
+// how to make Program.cs aware of the TheaterDataService class. 
+builder.Services.AddScoped<TheaterDataService>(); 
+
 
 var app = builder.Build();
 

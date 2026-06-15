@@ -24,4 +24,9 @@
 	  </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Providers\" />
+  </ItemGroup>
+
 </Project>
