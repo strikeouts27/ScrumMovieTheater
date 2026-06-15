@@ -1,4 +1,4 @@
-using ScrumMovieTheater.API.providers;
+using ScrumMovieTheater.API.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
 

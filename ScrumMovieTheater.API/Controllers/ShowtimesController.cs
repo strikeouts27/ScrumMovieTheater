@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ScrumMovieTheater.API.models;
-using ScrumMovieTheater.API.providers;
+using ScrumMovieTheater.API.Models;
+using ScrumMovieTheater.API.Providers;
 using System.Security.Cryptography.X509Certificates;
 
 
@@ -36,33 +36,33 @@ namespace ScrumMovieTheater.API.Controllers
             _showtimeContext.SaveChanges();
         }
 
-        [HttpPut("{id}")]
-        public async Task Update(int id, [FromBody] Showtime updatedShowtime)
-        {
-            var showtimeToUpdate = _showtimeContext.Showtimes.FirstOrDefault(s => s.idShowtime.Equals(id));
-            if (showtimeToUpdate == null)
-                return;
+        //[HttpPut("{id}")]
+        //public async Task Update(int id, [FromBody] Showtime updatedShowtime)
+        //{
+        //    var showtimeToUpdate = _showtimeContext.Showtimes.FirstOrDefault(s => s.IdShowtimes.Equals(id));
+        //    if (showtimeToUpdate == null)
+        //        return;
 
-            // let the database handle id's 
-            showtimeToUpdate.StartTime = updatedShowtime.StartTime;
-            showtimeToUpdate.EndTime = updatedShowtime.EndTime;
-            showtimeToUpdate.TicketPrice = updatedShowtime.TicketPrice;
-            showtimeToUpdate.Movie = updatedShowtime.Movie;
+        //    // let the database handle id's 
+        //    showtimeToUpdate.StartTime = updatedShowtime.StartTime;
+        //    showtimeToUpdate.EndTime = updatedShowtime.EndTime;
+        //    showtimeToUpdate.TicketPrice = updatedShowtime.TicketPrice;
+        //    showtimeToUpdate.Movie = updatedShowtime.Movie;
 
-            _showtimeContext.Showtimes.Update(showtimeToUpdate);
-            await _showtimeContext.SaveChangesAsync(); 
-        }
+        //    _showtimeContext.Showtimes.Update(showtimeToUpdate);
+        //    await _showtimeContext.SaveChangesAsync(); 
+        //}
 
-        [HttpDelete]
-        public async Task Delete(int id)
-        {
-            var showtimeToDelete = _showtimeContext.Showtimes.FirstOrDefault(s => s.idShowtime.Equals(id));
-            if (showtimeToDelete == null)
-                return;
-            _showtimeContext.Showtimes.Remove(showtimeToDelete);
-            _showtimeContext.SaveChanges(); 
+        //[HttpDelete]
+        //public async Task Delete(int id)
+        //{
+        //    var showtimeToDelete = _showtimeContext.Showtimes.FirstOrDefault(s => s.idShowtime.Equals(id));
+        //    if (showtimeToDelete == null)
+        //        return;
+        //    _showtimeContext.Showtimes.Remove(showtimeToDelete);
+        //    _showtimeContext.SaveChanges(); 
 
-        }
+        //}
         
 
     }

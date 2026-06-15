@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ScrumMovieTheater.API.models;
+namespace ScrumMovieTheater.API.Models;
 
 public partial class Showtime
 {
-    public int idShowtime { get; set; }
+    public int IdShowtimes { get; set; }
 
-    public int MovieId { get; set; }
+    public TimeSpan TimeSlot { get; set; }
 
-    public DateTime StartTime { get; set; }
+    public int Showroom { get; set; }
 
-    public DateTime EndTime { get; set; }
+    public int Movie { get; set; }
 
-    public decimal TicketPrice { get; set; }
+    public virtual Movie MovieNavigation { get; set; } = null!;
 
-    public virtual Movie Movie { get; set; } = null!;
+    public virtual Showroom ShowroomNavigation { get; set; } = null!;
 }
