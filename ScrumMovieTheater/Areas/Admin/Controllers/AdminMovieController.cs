@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Security;
+using ScrumMovieTheater.Controllers;
+using ScrumMovieTheater.DTOs;
 using ScrumMovieTheater.Models;
 using ScrumMovieTheater.Services;
 
@@ -7,11 +10,22 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers;
 [Area("Admin")]
 public class AdminMovieController : Controller
 {
-   
-    [HttpGet]
-    public IActionResult Manager()
+
+    private readonly MovieDataService _movieDataService;
+
+    // its a good idea to pull up another controller and use visual studio codes split view. 
+    public AdminMovieController(MovieDataService movieDataService)
     {
-        return View();
+        _movieDataService = movieDataService;
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> Manager()
+    {
+        List<MovieDTO> movies = await _movieDataService.GetMoviesAsync();
+        MovieListViewModel movieTemplate = new MovieListViewModel(movies); 
+        return View(movieTemplate);
     }
 
    

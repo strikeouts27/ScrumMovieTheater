@@ -25,7 +25,12 @@ namespace ScrumMovieTheater.Models
                         Id = movie.Id,
                         Title = movie.Title,
                         Description = movie.Description,
+                        Rating = movie.Rating,
+                        Genre = movie.Genre,
                         ReleaseDate = movie.ReleaseDate,
+                        RuntimeMinutes = movie.RuntimeMinutes,
+
+
                         // this specifies the url for using this image in the front end
                         // and how the data is in the database is how this code will interpret what to do. 
                         // for example JohnWick does not work because the database has it as John Wick
@@ -50,7 +55,10 @@ namespace ScrumMovieTheater.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Rating { get; set; }
+        public string Genre { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public int RuntimeMinutes { get; set; }
 
         // probably can use this url with an image we include as an asset for the project. 
         public string ImageUrl { get; set; }
