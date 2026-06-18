@@ -19,7 +19,7 @@ namespace ScrumMovieTheater.Controllers
 
         public MoviesController(MovieDataService movieDataService)
         {
-            _movieDataService = movieDataService; 
+            _movieDataService = movieDataService;
         }
 
 
@@ -36,21 +36,33 @@ namespace ScrumMovieTheater.Controllers
         2. create a constructor to create the object that can hold the data. 
         3. We want to create a get route so we specify the HTTP GET tag/attribute. 
         4. We 
-        */ 
+        */
 
-         
-        
+
+
         [HttpGet]
-        [Route("Index")]
         // This is a get method 
         public async Task<IActionResult> Index()
         {
             List<MovieDTO> movies = await _movieDataService.GetMoviesAsync();
             // we use <> for templates. 
             // new movie list view model. 1. use a viewmodel type 2. name the variable. 3 use the new keyword 4. call the list of movies, by calling the constructor you create an object with the infomration you need. 
-            MovieListViewModel movieTemplate = new MovieListViewModel(movies); 
+            MovieListViewModel movieTemplate = new MovieListViewModel(movies);
             // it should now return the movieTemplate for movie View. 
+            return View(movieTemplate);
+        }
+
+        // This method is differnt in that we are trying to filter the information from what it gathers. 
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMoviesByTheater([FromRoute]int id) {
+            // getting a list of movies 
+            List<MovieDTO> movies = await _movieDataService.GetMoviesByTheaterAsync(id);
+            MovieListViewModel movieTemplate = new MovieListViewModel(movies); 
             return View(movieTemplate); 
+
+            // filter by theater 
+            
         }
 
     }

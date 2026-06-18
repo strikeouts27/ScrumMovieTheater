@@ -3,6 +3,8 @@
 using ScrumMovieTheater.DTOs;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 /*
  For this project to work you must right click on the solutions file and selecting properties. You need to tell visual studio to launch both the main project and the api.  
@@ -57,8 +59,19 @@ public class MovieDataService
         return Newtonsoft.Json.JsonConvert.DeserializeObject<List<MovieDTO>>(content);
     }
 
-    // The controller called services with this converted dto. and the dto is passed in as a parameter. 
+    
+    public async Task<List<MovieDTO>> GetMoviesByTheaterAsync(int idTheater)
+    {
+        List<MovieDTO> movies = new List<MovieDTO>
+        {
+            new MovieDTO{Id=1, Title="How I Became A Programmer", Description="How Andrew Became A Programmer", Rating="R", Genre="Comedy", ReleaseDate=DateTime.Today, RuntimeMinutes=180},
+            new MovieDTO{Id=2, Title="Andrew Crashes Production", Description="How Andrew Ruined Microsoft", Rating="R", Genre="Comedy", ReleaseDate=DateTime.Today, RuntimeMinutes=180},
+            new MovieDTO{Id=2, Title="Bill Gates Revenge", Description="Bill Gates Comes Out Of Retirement to fix Microsoft", Rating="R", Genre="Thriller", ReleaseDate=DateTime.Today, RuntimeMinutes=180},
+        };
+        return movies;
+    }
     public async Task CreateEventAsync(MovieDTO newEventDTO)
+    // The controller called services with this converted dto. and the dto is passed in as a parameter. 
     {
         var jeventDTO = JsonConvert.SerializeObject(newEventDTO);
         // client was created earlier in the program see the top of the code page. 
