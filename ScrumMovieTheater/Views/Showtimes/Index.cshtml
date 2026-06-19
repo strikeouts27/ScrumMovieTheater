@@ -1,208 +1,37 @@
-@{
-    ViewData["Title"] = "Showtimes";
+@using ScrumMovieTheater.Models
+@model List<Showtime>
+
+<h2>Showtimes</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Movie</th>
+        <th>Theater</th>
+        <th>Time</th>
+        <th>Price</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <a href="/Movies/Details/@item.MovieId">
+                @item.Movie?.Title
+            </a>
+        </td>
+
+        <td>
+            @item.Theater?.Name
+        </td>
+
+        <td>
+            @item.TimeSlot
+        </td>
+
+        <td>
+            @item.Price
+        </td>
+    </tr>
 }
-
-<div class="container mt-4">
-
-    <h1 class="text-center mb-5">Movie Showtimes</h1>
-
-    <!-- ================= DALLAS ================= -->
-    <div class="card mb-5">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Dallas Theater</h3>
-        </div>
-
-        <div class="card-body">
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Movie</th>
-                        <th>Showtimes</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>Avatar 3</td>
-                        <td>     
-                            <a href="/Booking/Tickets?scheduleId=1&movie=Avatar%203&time=10:00AM">10:00 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=2&movie=Avatar%203&time=1:00PM">1:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=3&movie=Avatar%203&time=4:00PM">4:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=4&movie=Avatar%203&time=7:00PM">7:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Superman</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=5&movie=Superman&time=10:30AM">10:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=6&movie=Superman&time=1:30PM">1:30 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=7&movie=Superman&time=4:30PM">4:30 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=8&movie=Superman&time=7:30PM">7:30 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jurassic World</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=9&movie=Jurassic%20World&time=9:00AM">9:00 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=10&movie=Jurassic%20World&time=2:00PM">2:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=11&movie=Jurasic%20World&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=12&movie=Jurasic%20World&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Avengers</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=13&movie=Avengers&time=9:00AM">8:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=14&movie=Avengers&time=2:00PM">2:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=15&movie=Avengers&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=16&movie=Avengers&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>   
-                       
-                        <td>Batman</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=17&movie=Batman&time=9:00AM">8:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=18&movie=Batman&time=2:00PM">2:00 PM</a>  |
-                            <a href="/Booking/Tickets?scheduleId=19&movie=Batman&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=20&movie=Batman&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- ================= HOUSTON ================= -->
-    <div class="card mb-5">
-        <div class="card-header bg-success text-white">
-            <h3 class="mb-0">Houston Theater</h3>
-        </div>
-
-        <div class="card-body">
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Movie</th>
-                        <th>Showtimes</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>Avatar 3</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=21&movie=Avatar%203&time=10:00AM">10:00 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=22&movie=Avatar%203&time=1:00PM">1:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=23&movie=Avatar%203&time=4:00PM">4:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=24&movie=Avatar%203&time=7:00PM">7:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Superman</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=25&movie=Superman&time=10:30AM">10:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=26&movie=Superman&time=1:30PM">1:30 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=27&movie=Superman&time=4:30PM">4:30 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=28&movie=Superman&time=7:30PM">7:30 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jurassic World</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=29&movie=Jurassic%20World&time=9:00AM">9:00 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=30&movie=Jurassic%20World&time=2:00PM">2:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=31&movie=Jurasic%20World&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=32&movie=Jurasic%20World&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Avengers</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=33&movie=Avengers&time=9:00AM">8:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=34&movie=Avengers&time=2:00PM">2:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=35&movie=Avengers&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=36&movie=Avengers&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Batman</td>
-                        <td> 
-                            <a href="/Booking/Tickets?scheduleId=37&movie=Batman&time=9:00AM">8:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=38&movie=Batman&time=2:00PM">2:00 PM</a>  |
-                            <a href="/Booking/Tickets?scheduleId=39&movie=Batman&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=40&movie=Batman&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- ================= CARROLLTON ================= -->
-    <div class="card mb-5">
-        <div class="card-header bg-warning">
-            <h3 class="mb-0">Carrollton Theater</h3>
-        </div>
-
-        <div class="card-body">
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Movie</th>
-                        <th>Showtimes</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>Avatar 3</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=41&movie=Avatar%203&time=10:00AM">10:00 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=42&movie=Avatar%203&time=1:00PM">1:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=43&movie=Avatar%203&time=4:00PM">4:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=44&movie=Avatar%203&time=7:00PM">7:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Superman</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=45&movie=Superman&time=10:30AM">10:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=46&movie=Superman&time=1:30PM">1:30 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=47&movie=Superman&time=4:30PM">4:30 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=48&movie=Superman&time=7:30PM">7:30 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jurassic World</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=49&movie=Jurassic%20World&time=9:00AM">9:00 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=50&movie=Jurassic%20World&time=2:00PM">2:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=51&movie=Jurasic%20World&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=52&movie=Jurasic%20World&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Avengers</td>
-                        <td>
-                            <a href="/Booking/Tickets?scheduleId=53&movie=Avengers&time=9:00AM">8:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=54&movie=Avengers&time=2:00PM">2:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=55&movie=Avengers&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=56&movie=Avengers&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Batman</td>
-                        <td> 
-                            <a href="/Booking/Tickets?scheduleId=57&movie=Batman&time=9:00AM">8:30 AM</a> |
-                            <a href="/Booking/Tickets?scheduleId=58&movie=Batman&time=2:00PM">2:00 PM</a>  |
-                            <a href="/Booking/Tickets?scheduleId=59&movie=Batman&time=5:00PM">5:00 PM</a> |
-                            <a href="/Booking/Tickets?scheduleId=60&movie=Batman&time=6:00PM">6:00 PM</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div>
+</table>

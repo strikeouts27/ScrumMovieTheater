@@ -4,7 +4,7 @@
     ViewData["Title"] = "Movies";
 }
 
-<h2>Movies</h2>
+<h2 class="mb-3">Movies</h2>
 
 @if (!string.IsNullOrEmpty(ViewBag.Search))
 {
@@ -13,21 +13,42 @@
     </div>
 }
 
+<style>
+    .movie-card {
+        transition: transform 0.2s;
+    }
+
+    .movie-card:hover {
+        transform: scale(1.03);
+    }
+
+    .movie-link {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
 <div class="row">
     @foreach (var movie in Model)
     {
         <div class="col-md-4">
-            <div class="card mb-3">
 
-                <img src="@movie.ImageUrl"
-                     class="card-img-top"
-                     style="height:300px; object-fit:cover; width:100%;" />
+            <a href="/Movies/Details/@movie.MovieId" class="movie-link">
 
-                <div class="card-body">
-                    <h5 class="card-title">@movie.Title</h5>
+                <div class="card mb-3 movie-card">
+
+                    <img src="@movie.ImageUrl"
+                         class="card-img-top"
+                         style="height:400px; object-fit:content; width:100%; background-color: white;"/>
+
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                    </div>
+
                 </div>
 
-            </div>
+            </a>
+
         </div>
     }
 </div>

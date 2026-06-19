@@ -1,0 +1,16 @@
+@model ScrumMovieTheater.Models.Movie
+
+<div style="max-width:800px; margin:auto;">
+
+    <h2>@Model.Title</h2>
+
+    <img src="@Model.ImageUrl"
+         style="width:200px; height:300px; object-fit:cover; border-radius:8px;" />
+
+    <p><b>Description:</b> @Model.Description</p>
+    <p><b>Genre:</b> @Model.Genre</p>
+    <p><b>Rating:</b> @Model.Rating</p>
+    <p><b>Runtime:</b> @Model.RuntimeMinutes minutes</p>
+    <p><b>Release Date:</b> @Model.ReleaseDate</p>
+
+</div>

@@ -4,43 +4,41 @@ using ScrumMovieTheater.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-// Add services to the container.
+// Add services FIRST
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add DbContext HERE
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(
+            builder.Configuration.GetConnectionString("DefaultConnection"))
+    ));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// everything below stays below
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
-// Swagger UI (Development only)
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.RoutePrefix = "swagger";
-    });
-}
-
 app.UseHttpsRedirection();
-app.UseRouting();
-app.UseAuthorization();
-app.MapStaticAssets();
 
-app.MapControllerRoute(
-    name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();

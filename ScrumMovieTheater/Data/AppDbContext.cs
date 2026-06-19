@@ -22,17 +22,33 @@ namespace ScrumMovieTheater.Data
         // This DbSet<Movie> allows you to query and save Movie records
         // You access it with _context.Movies
         public DbSet<Movie> Movies { get; set; }
-
+        public DbSet<Theater> Theaters { get; set; } // ADD THIS
+        public DbSet<Showtime> Showtimes { get; set; }
         // Override the OnModelCreating method to configure the database schema
         // This method is called when the model is being created/initialized
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Call the base implementation to ensure default configurations are applied
             base.OnModelCreating(modelBuilder);
 
-            // Add custom configurations here (mapping, relationships, constraints, etc.)
-            // Example:
-            // modelBuilder.Entity<Movie>().HasKey(m => m.Id);
+            modelBuilder.Entity<Theater>().ToTable("theater");
+            modelBuilder.Entity<Movie>().ToTable("movie");
+            modelBuilder.Entity<Showtime>().ToTable("showtimes");
+
+            modelBuilder.Entity<Theater>()
+                .HasKey(t => t.TheaterId);
+
+            modelBuilder.Entity<Movie>()
+                .HasKey(m => m.MovieId);
+
+            modelBuilder.Entity<Showtime>()
+                .HasOne(s => s.Movie)
+                .WithMany(m => m.Showtimes)
+                .HasForeignKey(s => s.MovieId);
+
+            modelBuilder.Entity<Showtime>()
+                .HasOne(s => s.Theater)              // FIX HERE
+                .WithMany(t => t.Showtimes)         // (assuming Theater has Showtimes list)
+                .HasForeignKey(s => s.TheaterId);   // correct FK
         }
     }
 }

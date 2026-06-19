@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ScrumMovieTheater.Data;
 using ScrumMovieTheater.Models;
@@ -6,29 +7,31 @@ namespace ScrumMovieTheater.Controllers
 {
     public class MoviesController : Controller
     {
-        //private readonly AppDbContext _context;
+        private readonly AppDbContext _context;
 
-        //public MoviesController(AppDbContext context)
-        //{
-        //    //_context = context;
-        //}
+        public MoviesController(AppDbContext context)
+        {
+            _context = context;
+        }
 
+        //  Show all movies
         public IActionResult Index()
         {
-            var movies = new List<Movie>
-            {
-                new Movie
-                {
-                    Title = "John Wick",
-                    Description = "the john wick movie"
-                },
-                new Movie
-                {
-                    Title = "The Pokemon movie",
-                    Description = "the one where mewtwo gets angy"
-                }
-            };
-                    return View(movies);
+            var movies = _context.Movies.ToList();
+            return View(movies);
+        }
+
+        //  Movie details
+
+       
+       public IActionResult Details(int id)
+        {
+           var movie = _context.Movies.FirstOrDefault(m => m.MovieId == id);
+
+           if (movie == null)
+             return NotFound();
+
+           return View(movie);
         }
     }
 }
