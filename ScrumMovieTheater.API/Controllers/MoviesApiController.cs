@@ -9,13 +9,13 @@ namespace ScrumMovieTheater.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MoviesController : ControllerBase
+    public class MoviesApiController : ControllerBase
     {
         // we must create a variable that is capable of holding a ScrumMovieTheaterContext type with _
         // name things better at the start. 
         private readonly ScrumMovieTheaterContext _movieContext; 
         // in this constructor we need to provide the corresponding db context found in the providers folder.
-        public MoviesController(ScrumMovieTheaterContext movieContext) {
+        public MoviesApiController(ScrumMovieTheaterContext movieContext) {
             _movieContext = movieContext; 
         }
 

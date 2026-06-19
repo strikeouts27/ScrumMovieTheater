@@ -26,11 +26,11 @@ public partial class ScrumMovieTheaterContext : DbContext
 
     public virtual DbSet<Showtime> Showtimes { get; set; }
 
+    public virtual DbSet<Theater> Theaters { get; set; }
     // TO DO THEATER
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         if (!optionsBuilder.IsConfigured) {
-            
             optionsBuilder.UseMySQL(_config.GetConnectionString("DefaultConnection")); 
         }
     }

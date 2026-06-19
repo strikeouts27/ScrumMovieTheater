@@ -8,13 +8,13 @@ namespace ScrumMovieTheater.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TheaterController : ControllerBase
+    public class TheaterApiController : ControllerBase
     {
         // we must create a variable that is capable of holding a ScrumMovieTheaterContext type with _
         // name things better at the start. 
         private readonly ScrumMovieTheaterContext _theaterContext;
         // in this constructor we need to provide the corresponding db context found in the providers folder.
-        public TheaterController(ScrumMovieTheaterContext theaterContext)
+        public TheaterApiController(ScrumMovieTheaterContext theaterContext)
         {
             _theaterContext = theaterContext;
         }
@@ -23,7 +23,7 @@ namespace ScrumMovieTheater.API.Controllers
         [HttpGet]
         public List<Theater> Get()
         {
-            return _theaterContext.Theater.ToList();
+            return _theaterContext.Theaters.ToList();
         }
     }
 }
