@@ -31,30 +31,39 @@
         background-color: green;
     }
 
-    .edit-btn {
-        background-color: orange;
-    }
+.manager-card-header {
+    background-color: #e50914;
+    color: white;
+    font-weight: bold;
+}
 
-    .delete-btn {
-        background-color: red;
-    }
+.manager-add-btn {
+    background-color: #e50914;
+    color: white;
+    border: none;
+}
+
+.manager-add-btn:hover {
+    background-color: #b8070f;
+    color: white;
+}
 
 .manager-edit-btn {
     background-color: #ffc107;
     color: black;
     border: none;
-    }
+}
 
 .manager-edit-btn:hover {
     background-color: #e0a800;
     color: black;
-    }
+}
 
 .manager-delete-btn {
     background-color: #dc3545;
-        color: white;
+    color: white;
     border: none;
-    }
+}
 
 .manager-delete-btn:hover {
     background-color: #a71d2a;

@@ -1,35 +1,21 @@
-
-using System.ComponentModel.DataAnnotations;
-
-namespace ScrumMovieTheater.Models
+﻿namespace ScrumMovieTheater.Models
 {
-    public class MovieViewModel
+    // might want to pull up the models of what you are making a view model for
+    // so that you choose correct attributes. use vs code split view. 
+
+    // TO DO SPEAK WITH THE FRONT END ABOUT WHAT WE ARE USING AND WHAT WE ARE NOT USING. 
+    public class MovieViewModel()
     {
         public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Rating { get; set; }
+        public string Genre { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public int RuntimeMinutes { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "Movie Title")]
-        public string Title { get; set; } = string.Empty;
+        // probably can use this url with an image we include as an asset for the project. 
+        public string ImageUrl { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Genre { get; set; } = string.Empty;
-
-        [Display(Name = "Duration")]
-        public TimeSpan Duration { get; set; }
-
-        [Range(0, 20)]
-        [Display(Name = "Hours")]
-        public int DurationHours { get; set; }
-
-        [Range(0, 59)]
-        [Display(Name = "Minutes")]
-        public int DurationMinutes { get; set; }
-
-        [Required]
-        [StringLength(1000)]
-        [DataType(DataType.MultilineText)]
-        public string Description { get; set; } = string.Empty;
     }
 }
