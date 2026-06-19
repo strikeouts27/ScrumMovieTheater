@@ -26,9 +26,9 @@
                 <div class="card border-0 shadow-sm bg-dark text-white">
                     <div class="card-header manager-card-header py-3">
                         <h1 class="h5 mb-0">Add New Movie</h1>
-                    </div>
+    </div>
                     <div class="card-body p-4">
-                        <form asp-area="Admin" asp-controller="Movie" asp-action="AddMovie" method="post" novalidate>
+                        <form asp-area="Admin" asp-controller="AdminMovie" asp-action="AddMovie" method="post" novalidate>
                             @Html.AntiForgeryToken()
 
                             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
