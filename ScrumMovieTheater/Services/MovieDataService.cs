@@ -59,7 +59,7 @@ public class MovieDataService
         return Newtonsoft.Json.JsonConvert.DeserializeObject<List<MovieDTO>>(content);
     }
 
-    
+    // THis particular method is designed to get all of the movies and than filters the daata by a single theater. 
     public async Task<List<MovieDTO>> GetMoviesByTheaterAsync(int idTheater)
     {
         List<MovieDTO> movies = new List<MovieDTO>

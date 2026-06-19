@@ -55,6 +55,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapStaticAssets();
 
+// Attribute tags like [Route("Index")] will not have to follow these routes. it bypasses this code and forces the programmer to specify what to do intead.  
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

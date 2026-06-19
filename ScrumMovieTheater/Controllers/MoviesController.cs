@@ -6,6 +6,8 @@ using ScrumMovieTheater.Services;
 
 namespace ScrumMovieTheater.Controllers
 {
+    // if your routes are competing with each other, you can use [controller] technique which will pass in the corresponding controller name into the url and all urls afterwards will use controllername/
+    [Route("[controller]")]
     public class MoviesController : Controller
     {
         //private readonly AppDbContext _context;
@@ -39,8 +41,11 @@ namespace ScrumMovieTheater.Controllers
         */
 
 
+        // Route methods can be used to override conventional url paths created in Program.cs. If you have an HTTP[Get] you can specify the route name inside the GET. DO not make a Route[] when there is already a HTTP get request. 
+        // In these instances it will accept two different routes. /movies/index and /movies is handled. 
 
-        [HttpGet]
+        [HttpGet("Index")]
+        [HttpGet("")]
         // This is a get method 
         public async Task<IActionResult> Index()
         {
@@ -61,7 +66,7 @@ namespace ScrumMovieTheater.Controllers
             MovieListViewModel movieTemplate = new MovieListViewModel(movies); 
             return View(movieTemplate); 
 
-            // filter by theater 
+            // filter by theater
             
         }
 
