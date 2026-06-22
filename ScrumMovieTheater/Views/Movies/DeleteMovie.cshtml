@@ -1,0 +1,27 @@
+@page "/deletemovie"
+@model ScrumMovieTheater.Views.Movies.Pages.DeleteMovieModel
+@{
+    ViewData["Title"] = "DeleteMovie";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Movie</title>
+    <link rel="stylesheet" href="MovieForm.css">
+</head>
+<body>
+
+<div class="movie-form">
+
+    <h2>Delete Movie</h2>
+
+    <label for="movieId">Movie ID</label>
+    <input type="number" id="movieId" placeholder="Enter Movie ID">
+
+    <button class="delete-btn">Delete Movie</button>
+
+</div>
+
+</body>
+</html>

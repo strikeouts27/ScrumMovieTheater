@@ -48,37 +48,37 @@ public class AdminMovieController : Controller
     private readonly MovieDataService _movieDataService;
 
     // its a good idea to pull up another controller and use visual studio codes split view. 
-    public AdminMovieController(MovieDataService movieDataService)
-    {
-        _movieDataService = movieDataService;
-    }
+     //_movieDataService = movieDataService;
+    // }public AdminMovieController(MovieDataService movieDataService)
+    // {
+       
 
 
-    [HttpGet]
-    public async Task<IActionResult> Manager()
-    {
-        List<MovieDTO> movies = await _movieDataService.GetMoviesAsync();
-        MovieListViewModel movieTemplate = new MovieListViewModel(movies); 
-        return View(movieTemplate);
-    }
+    // [HttpGet]
+    //  public async Task<IActionResult> Manager()
+    // {
+    //     List<MovieDTO> movies = await _movieDataService.GetMoviesAsync();
+    //     MovieListViewModel movieTemplate = new MovieListViewModel(movies); 
+    //     return View(movieTemplate);
+    // }
 
    
-    [HttpGet]
-    public IActionResult EditMovie(int id)
-    {
-        return View();
-    }
+    // [HttpGet]
+    // public IActionResult EditMovie(int id)
+    // {
+    //     return View();
+    // }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult EditMovie(MovieViewModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            return View(model);
-        }
-        return RedirectToAction("Manager");
-    }
+    // [HttpPost]
+    // [ValidateAntiForgeryToken]
+    // public IActionResult EditMovie(MovieViewModel model)
+    // {
+    //     if (!ModelState.IsValid)
+    //     {
+    //         return View(model);
+    //     }
+    //     return RedirectToAction("Manager");
+    // }
 
 
     [HttpGet]

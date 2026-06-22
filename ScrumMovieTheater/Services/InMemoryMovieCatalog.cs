@@ -20,7 +20,7 @@ public class InMemoryMovieCatalog : IMovieCatalog
             Id = movie.Id == 0 ? movies.Count + 1 : movie.Id,
             Title = movie.Title,
             Genre = movie.Genre,
-            Duration = movie.Duration,
+            //Duration = movie.Duration,
             Description = movie.Description
         };
 
