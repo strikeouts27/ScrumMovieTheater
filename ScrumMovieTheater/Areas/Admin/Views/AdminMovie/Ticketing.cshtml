@@ -1,0 +1,91 @@
+@page "/ticketing"
+@model ScrumMovieTheater.Areas.Admin.Views.AdminMovie.Pages.TicketingModel
+@{
+    ViewData["Title"] = "Ticketing";
+}
+
+<style>
+    body {
+        font-family: Arial;
+        background: #f4f4f4;
+    }
+
+    .ticket-container {
+        width: 400px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px gray;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+        background: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background: darkgreen;
+    }
+
+    .home {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="ticket-container">
+
+    <h2>🎟️ Book Your Ticket</h2>
+
+    <form method="post">
+
+        <label>Movie Name</label>
+        <select name="movie">
+            <option>Avengers</option>
+            <option>Batman</option>
+            <option>Spider-Man</option>
+        </select>
+
+        <label>Full Name</label>
+        <input type="text" name="name" required />
+
+        <label>Email</label>
+        <input type="email" name="email" required />
+
+        <label>Number of Tickets</label>
+        <input type="number" name="tickets" min="1" max="10" required />
+
+        <button type="submit" class="btn">Book Ticket</button>
+
+    </form>
+
+    <a href="/" class="home">⬅ Return Home</a>
+
+</div>
