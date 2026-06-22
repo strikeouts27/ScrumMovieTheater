@@ -1,0 +1,122 @@
+@page "/deletemovie"
+@model ScrumMovieTheater.Views.Movies.Pages.DeleteMovieModel
+@{
+    ViewData["Title"] = "DeleteMovie";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Movie</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 450px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: teal;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form {
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .delete-btn {
+            width: 100%;
+            background-color: red;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+
+        .home-btn {
+            width: 100%;
+            background-color: teal;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .home-btn:hover {
+            background-color: #006666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Delete Movie</h1>
+        </div>
+
+        <div class="form">
+
+            <label for="movieId">Movie ID</label>
+
+            <input
+                type="number"
+                id="movieId"
+                placeholder="Enter Movie ID">
+
+            <button class="delete-btn">
+                Delete Movie
+            </button>
+
+            <button
+                class="home-btn"
+                onclick="window.location.href='Manager.html'">
+                Return Home
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
