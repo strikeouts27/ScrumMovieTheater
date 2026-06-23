@@ -100,4 +100,16 @@ public class AdminMovieController : Controller
 
         return RedirectToAction("Index", "AdminMovies");
     }
+    public IActionResult Ticketing()
+
+    {
+
+        return View();
+
+    }
+
+
+
+
+
 }
