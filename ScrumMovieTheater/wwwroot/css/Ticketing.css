@@ -1,0 +1,58 @@
+
+    body {
+        font-family: Arial;
+        background: #f4f4f4;
+    }
+
+    .ticket-container {
+        width: 420px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px gray;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+        background: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background: darkgreen;
+    }
+
+    .total {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .home {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }

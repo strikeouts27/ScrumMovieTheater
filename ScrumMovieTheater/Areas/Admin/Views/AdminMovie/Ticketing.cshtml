@@ -3,62 +3,25 @@
 @{
     ViewData["Title"] = "Ticketing";
 }
+@section Scripts {
+    
 
-<style>
-    body {
-        font-family: Arial;
-        background: #f4f4f4;
-    }
+    <script>
+    const ticketInput = document.getElementById("tickets");
+    const totalSpan = document.getElementById("total");
+    const pricePerTicket = 10;
 
-    .ticket-container {
-        width: 400px;
-        margin: 50px auto;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px gray;
-    }
+    ticketInput.addEventListener("input", function () {
+        let qty = parseInt(ticketInput.value) || 0;
+        totalSpan.textContent = qty * pricePerTicket;
+    });
+</script>
+}
 
-    h2 {
-        text-align: center;
-        color: #333;
-    }
+@section Styles {
+    <link rel="stylesheet" href="~/css/Ticketing.css" asp-append-version="true" />
+}
 
-    label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-
-    input, select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-
-    .btn {
-        width: 100%;
-        margin-top: 15px;
-        padding: 10px;
-        background: green;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        background: darkgreen;
-    }
-
-    .home {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-    }
-</style>
 
 <div class="ticket-container">
 
@@ -76,11 +39,19 @@
         <label>Full Name</label>
         <input type="text" name="name" required />
 
+        <label>Phone Number (for confirmation)</label>
+        <input type="tel" name="phone" placeholder="e.g. 214-555-1234" required />
+
         <label>Email</label>
         <input type="email" name="email" required />
 
         <label>Number of Tickets</label>
-        <input type="number" name="tickets" min="1" max="10" required />
+        <input type="number" name="tickets" id="tickets" min="1" max="10" value="1" required />
+
+        <p class="total">
+            💰 Price per ticket: $10 <br />
+            Total: $<span id="total">10</span>
+        </p>
 
         <button type="submit" class="btn">Book Ticket</button>
 
@@ -89,3 +60,4 @@
     <a href="/" class="home">⬅ Return Home</a>
 
 </div>
+
