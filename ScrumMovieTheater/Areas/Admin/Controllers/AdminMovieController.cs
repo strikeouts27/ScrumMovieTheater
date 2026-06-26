@@ -108,6 +108,14 @@ public class AdminMovieController : Controller
 
     }
 
+    public IActionResult DeleteMovie()
+
+    {
+
+        return View();
+
+    }
+
 
 
 
