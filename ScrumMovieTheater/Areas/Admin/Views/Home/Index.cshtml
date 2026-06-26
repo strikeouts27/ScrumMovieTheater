@@ -2,17 +2,58 @@
     ViewData["Title"] = "Admin Home";
 }
 
-<h2>Admin Area - Home</h2>
-<p>Welcome to the Admin area.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Area</title>
 
-<a asp-area="Admin" asp-controller="AdminMovie" asp-action="AddMovie">Add A Movie</a>
-<br />
-<a asp-area="Admin" asp-controller="AdminMovie" asp-action="EditMovie">Edit A Movie</a>
-<br />
-<a asp-area="Admin" asp-controller="AdminMovie" asp-action="DeleteMovie">Delete  A Movie</a>
-<br />    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: red;
+            color: white;
+            text-align: center;
+            padding-top: 60px;
+        }
 
-<a asp-area="Admin" asp-controller="AdminMovie" asp-action="Manager">Ibrahim's Movie Theater Manager</a>
-<br />
+        .menu-link {
+            display: block;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            margin: 10px auto;
+            width: 260px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-<a asp-area="Admin" asp-controller="Home" asp-action="Login">Login</a><br />
+        .menu-link:hover {
+            background-color: #333;
+            transform: scale(1.05);
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="title">Admin Area - Home</div>
+    <p>Welcome to the Admin area.</p>
+
+    
+    <a class="menu-link" href="/Admin/Home/Login/Login">Login</a>
+    <a class="menu-link" href="/Admin/AdminMovie/AddMovie">Add A Movie</a>
+    <a class="menu-link" href="/Admin/AdminMovie/EditMovie">Edit A Movie</a>
+    <a class="menu-link" href="/Admin/AdminMovie/DeleteMovie">Delete A Movie</a>
+    <a class="menu-link" href="/Admin/AdminMovie/Manager">Ibrahim’s Movie Theater Manager</a>
+    
+
+</body>
+</html>
