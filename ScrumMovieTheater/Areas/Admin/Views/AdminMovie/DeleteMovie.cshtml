@@ -4,48 +4,80 @@
     ViewData["Title"] = "DeleteMovie";
 }
 
-@section Styles {
-    <link rel="stylesheet" href="~/css/MovieForm.css" asp-append-version="true" />
-}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Movie</title>
 
-    
+    <style>
+        .movie-form {
+            display: flex;
+            flex-direction: column;
+            background-color: teal;
+        }
+
+        .movie-form label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .movie-form input,
+        .movie-form select,
+        .movie-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .movie-form textarea {
+            resize: vertical;
+        }
+
+        .add-btn {
+            margin-top: 20px;
+            background-color: green;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background-color: darkgreen;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+
 </head>
+
 <body>
 
-    <div class="container">
+<div class="movie-form">
 
-        <div class="header">
-            <h1>Delete Movie</h1>
-        </div>
+    <h2>Delete Movie</h2>
 
-        <div class="form">
+    <label for="movieId">Movie ID</label>
+    <input type="number" id="movieId" placeholder="Enter Movie ID">
 
-            <label for="movieId">Movie ID</label>
+    <button class="delete-btn">Delete Movie</button>
 
-            <input
-                type="number"
-                id="movieId"
-                placeholder="Enter Movie ID">
-
-            <button class="delete-btn">
-                Delete Movie
-            </button>
-
-            <button
-                class="home-btn"
-                onclick="window.location.href='Manager.html'">
-                Return Home
-            </button>
-
-        </div>
-
-    </div>
+</div>
 
 </body>
 </html>
