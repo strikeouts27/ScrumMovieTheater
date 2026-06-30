@@ -1,79 +1,99 @@
-@model ScrumMovieTheater.Models.MovieViewModel
-
-@{
-  ViewData["Title"] = "Add Movie";
+@model ScrumMovieTheater.Models.Movie
+<style>
+body {
+    background-color: #000000  !important;
+    color: white;
 }
 
-<!-- DO NOT REMOVE http://localhost:5013/Admin/Movie/AddMovie --> 
+table {
+    background-color: #1e293b !important;
+    color: white;
+}
 
-<div class="container py-4 py-lg-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-xl-8">
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-dark text-white py-3">
-          <h1 class="h5 mb-0">Add New Movie</h1>
+thead {
+    background-color: #000000  !important;
+    color: #facc15;
+}
+
+tbody tr {
+    background-color: #000000  !important;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #111827 !important;
+}
+</style>
+
+<link rel="stylesheet" href="~/css/AddMovie.css" />
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+
+            <div class="admin-card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Add Movie</h5>
+                </div>
+
+                <div class="card-body">
+
+                     <form asp-area="Admin"
+                           asp-controller="Movie"
+                           asp-action="AddMovie"
+                           method="post"
+                           enctype="multipart/form-data">
+                           @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input asp-for="Title" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Genre</label>
+                            <select asp-for="Genre" class="form-select">
+                                <option>Action</option>
+                                <option>Comedy</option>
+                                <option>Drama</option>
+                                <option>Horror</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Runtime (minutes)</label>
+                            <input asp-for="RuntimeMinutes" class="form-control" />
+                        </div>
+                      
+                         
+                        <div class="mb-3">
+                            <label class="form-label">Rating</label>
+                            <input asp-for="Rating" class="form-control" />
+                        </div>
+                        
+                        <div>
+                          <label>Release Date</label>
+                          <input asp-for="ReleaseDate" type="date" class="form-control" />
+                      </div>
+                      
+                      <div class="mb-3">
+                          <label class="form-label">Movie Image</label>
+                          <input type="file" name="ImageFile" class="form-control" />
+                         </div>
+                         <button type="submit" class="btn-save w-100">
+                            Save Movie
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+
         </div>
-        <div class="card-body p-4">
-          <form asp-action="AddMovie" method="post" novalidate>
-            @Html.AntiForgeryToken()
-
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-            <div class="mb-3">
-              <label asp-for="Title" class="form-label">Title</label>
-              <input asp-for="Title" class="form-control" />
-              <span asp-validation-for="Title" class="text-danger small"></span>
-            </div>
-
-            <div class="mb-3">
-              <label asp-for="Description" class="form-label">Description</label>
-              <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-              <span asp-validation-for="Description" class="text-danger small"></span>
-            </div>
-
-            <div class="mb-3">
-              <label asp-for="Genre" class="form-label">Genre</label>
-              <select asp-for="Genre" class="form-select">
-                <option value="">Choose a genre</option>
-                <option>Action</option>
-                <option>Comedy</option>
-                <option>Drama</option>
-                <option>Horror</option>
-              </select>
-              <span asp-validation-for="Genre" class="text-danger small"></span>
-            </div>
-
-            <div class="row g-3 mb-3">
-              
-        <div class="mb-3">
-            <label for="movieDuration" class="form-label">Movie Duration</label>
-            <div class="input-group">
-                <input type="number" 
-                    class="form-control" 
-                    id="movieDuration" 
-                    name="DurationInMinutes" 
-                    min="1" 
-                    max="600" 
-                    placeholder="e.g., 165" 
-                    required>
-                <span class="input-group-text" id="duration-addon">minutes</span>
-            </div>
-            <div class="form-text">Enter the total duration entirely in minutes (e.g., 2h 45m is 165 minutes).</div>
-        </div>
-
-            </div>
-
-            <div class="d-flex justify-content-end gap-2">
-              <button type="reset" class="btn btn-outline-secondary">Clear</button>
-              <button type="submit" class="btn btn-primary">Save Movie</button>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
-
-@section Scripts {
-  <partial name="_ValidationScriptsPartial" />
-}

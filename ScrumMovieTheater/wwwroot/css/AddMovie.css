@@ -1,99 +1,61 @@
-﻿body {
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+﻿/* ===== SHARED ADMIN FORM STYLE (AddMovie + AddShowTime) ===== */
 
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #8B0000;
-        padding: 30px;
-    }
+.admin-card {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
 
-    .container {
-        max-width: 1000px;
-        margin: auto;
-    }
+.card-header {
+    background: #0b1220 !important;
+    padding: 15px;
+    border-bottom: 2px solid #334155;
+}
 
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #333;
-    }
+.card-header h5 {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
 
-    .card {
-        background-color: white;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+.card-body {
+    padding: 20px;
+}
 
-    h2 {
-        margin-bottom: 15px;
-    }
+.form-label {
+    color: #cbd5e1;
+    font-weight: 600;
+}
 
-    label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
+.form-control,
+.form-select {
+    background: #334155;
+    border: none;
+    color: white;
+    border-radius: 6px;
+}
 
-    input,
-    select {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+.form-control:focus,
+.form-select:focus {
+    border: 1px solid #3b82f6;
+    box-shadow: none;
+    background: #334155;
+    color: white;
+}
 
-    button {
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
-    }
+.btn-save {
+    background: #3b82f6;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+    transition: 0.2s;
+}
 
-    .showtime-btn {
-        background-color: #0066cc;
-        margin-bottom: 15px;
-    }
-
-    .add-btn {
-        background-color: green;
-    }
-
-    .edit-btn {
-        background-color: orange;
-    }
-
-    .delete-btn {
-        background-color: red;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-    }
-
-    th,
-    td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: center;
-    }
-
-    th {
-        background-color: #333;
-        color: white;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+.btn-save:hover {
+    background: #16a34a;
 }

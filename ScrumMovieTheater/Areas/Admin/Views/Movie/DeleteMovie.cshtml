@@ -1,0 +1,42 @@
+@model ScrumMovieTheater.Models.Movie
+
+<h2>Delete Movie</h2>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete this movie?
+</div>
+
+<div>
+    <h4>@Model.Title</h4>
+
+    <div class="mb-3">
+    <img src="@Model.ImageUrl"
+         alt="@Model.Title"
+         style="width:150px; height:auto; border-radius:8px;" />
+    </div>
+    <p>@Model.Description</p>
+    <p><b>Genre:</b> @Model.Genre</p>
+    <p><b>Rating:</b> @Model.Rating</p>
+    <p><b>Runtime:</b> @Model.RuntimeMinutes minutes</p>
+    <p><b>Release Date:</b> @Model.ReleaseDate.ToShortDateString()</p>
+</div>
+
+<form asp-area="Admin"
+      asp-controller="Movie"
+      asp-action="DeleteConfirmed"
+      method="post">
+
+    <input type="hidden" name="id" value="@Model.MovieId" />
+
+    <button type="submit" class="btn btn-danger">
+        Yes, Delete
+    </button>
+
+    <a asp-area="Admin"
+       asp-controller="Movie"
+       asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

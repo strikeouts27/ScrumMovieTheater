@@ -1,5 +1,5 @@
-using ScrumMovieTheater.Data;
 using Microsoft.EntityFrameworkCore;
+using ScrumMovieTheater.Data;
 using ScrumMovieTheater.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +34,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

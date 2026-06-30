@@ -24,6 +24,8 @@ namespace ScrumMovieTheater.Data
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Theater> Theaters { get; set; } // ADD THIS
         public DbSet<Showtime> Showtimes { get; set; }
+
+        public DbSet<Booking> Bookings { get; set; }
         // Override the OnModelCreating method to configure the database schema
         // This method is called when the model is being created/initialized
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,7 +45,9 @@ namespace ScrumMovieTheater.Data
             modelBuilder.Entity<Showtime>()
                 .HasOne(s => s.Movie)
                 .WithMany(m => m.Showtimes)
-                .HasForeignKey(s => s.MovieId);
+                .HasForeignKey(s => s.MovieId)
+                .OnDelete(DeleteBehavior.Cascade);
+                
 
             modelBuilder.Entity<Showtime>()
                 .HasOne(s => s.Theater)              // FIX HERE

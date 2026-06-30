@@ -14,14 +14,40 @@ namespace ScrumMovieTheater.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+       
+       public IActionResult Index(int? theaterId, DateTime? showDate)
         {
             var showtimes = _context.Showtimes
                 .Include(s => s.Movie)
                 .Include(s => s.Theater)
+                .AsQueryable();
+
+            // FILTER: theater
+            if (theaterId.HasValue)
+            {
+                showtimes = showtimes.Where(s => s.TheaterId == theaterId);
+            }
+
+           // FILTER: date
+            if (showDate.HasValue)
+            {
+                showtimes = showtimes.Where(s => s.ShowDate == showDate);
+            }
+
+           // dropdown data
+            ViewBag.Theaters = _context.Theaters.ToList();
+
+            ViewBag.Dates = _context.Showtimes
+                .Select(s => s.ShowDate)
+                .Distinct()
+                .OrderBy(d => d)
                 .ToList();
 
-            return View(showtimes);
+           // keep selected values
+            ViewBag.SelectedTheater = theaterId;
+            ViewBag.SelectedDate = showDate;
+
+            return View(showtimes.ToList());
         }
     }
 }

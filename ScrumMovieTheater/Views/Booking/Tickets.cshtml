@@ -1,50 +1,224 @@
+@model Showtime
+
 @{
-    ViewData["Title"] = "Tickets";
+    ViewData["Title"] = "Book Tickets";
 }
 
-<h2>Book Tickets</h2>
-
-   
-@if (ViewBag.Movie != null)
-{
-    <div class="alert alert-info">
-        <strong>Selected Movie:</strong> @ViewBag.Movie <br />
-        <strong>Time:</strong> @ViewBag.Time
-    </div>
+<style>
+.showtime-card,
+.ticket-card {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 15px;
 }
-else
-{
-    <div class="alert alert-warning">
-        Please select a movie and time from Showtimes page.
 
-        <a class="btn btn-outline-primary" asp-controller="Showtimes" asp-action="Index">
-              Select Movie / Showtimes
-        </a>
-
-    </div>
+body{
+    background: #4a0000;
 }
+.showtime-card {
+    background: black;
+}
+
+.ticket-card {
+    background: black;
+}
+
+.name-box input {
+    background-color: #1d1a1a;
+    color: white;
+    border: 1px solid darkred;
+}
+
+.qty-control button {
+    background-color: darkred;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.next-btn {
+    background-color: darkred;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ticket-card,
+.ticket-card h3,
+.ticket-card h4,
+.ticket-card label,
+.ticket-card p {
+    color: white;
+}
+
+/* Movie info card */
+.showtime-card {
+    color: white;
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 15px;
+}
+
+/* Make movie info labels stand out */
+.showtime-card strong {
+    color: white;
+    font-weight: bold;
+}
+
+/* Ticket card */
+.ticket-card {
+    padding: 30px;
+    border-radius: 15px;
+}
+
+/* Ticket Selection heading */
+.title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* Name section */
+.name-box {
+    margin-bottom: 25px;
+}
+
+.name-box label {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.name-box input {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Adult/Kids rows */
+.ticket-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* Space around +/- controls */
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.qty-control button {
+    width: 40px;
+    height: 40px;
+}
+
+/* Confirm button */
+.next-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 12px;
+    font-weight: bold;
+}
+
+</style>
+
+<div class="showtime-card">
+    <h4>@Model.Movie?.Title</h4>
+
+    <p>
+        <strong>Theater:</strong> @Model.Theater?.Name
+    </p>
+
+    <p>
+        <strong>Showtime:</strong>
+        @Model.ShowDate.ToShortDateString() @Model.TimeSlot
+    </p>
+
+    <p>
+        <strong>Ticket Price:</strong> $@Model.Price
+    </p>
+</div>
 
 <form method="post" action="/Booking/Confirm">
 
-    <input type="hidden" name="scheduleId" value="@ViewBag.ScheduleId" />
+    <input type="hidden" name="showtimeId" value="@Model.Id" />
+    <!-- For adding + - function -->
+    <input type="hidden" name="adults" id="adultsInput" value="0" />
+    <input type="hidden" name="kids" id="kidsInput" value="0" />
 
-    <div class="mb-3">
-        <label>Your Name</label>
-        <input type="text" name="customerName" class="form-control" required />
+    <div class="ticket-container">
+
+    <div class="ticket-card">
+
+        <h3>Review Your Tickets</h3>
+
+        <!--  ADD THIS HERE -->
+        <div class="name-box">
+            <label>Your Name</label>
+            <input type="text" name="customerName" required />
+        </div>
+
+        <!-- ADULT -->
+        <div class="ticket-row">
+               <div>
+                <h4>Adult ($10)</h4>
+            </div>
+
+            <div class="qty-control">
+                <button type="button" onclick="changeQty('adults', -1)">−</button>
+                <span id="adultsQty">0</span>
+                <button type="button" onclick="changeQty('adults', 1)">+</button>
+            </div>
+        </div>
+
+        <!-- KIDS -->
+        <div class="ticket-row">
+            <div>
+                <h4>Kids ($5)</h4>
+            </div>
+
+            <div class="qty-control">
+                <button type="button" onclick="changeQty('kids', -1)">−</button>
+                <span id="kidsQty">0</span>
+                <button type="button" onclick="changeQty('kids', 1)">+</button>
+            </div>
+        </div>
+
+        <button type="submit" class="next-btn">Confirm Booking</button>
+
     </div>
+</div>
+<!-- This is for calculating using javascritp-->
+@section Scripts {
+<script>
+    let counts = {
+        adults: 0,
+        kids: 0
+    };
 
-    <div class="mb-3">
-        <label>Adults ($10)</label>
-        <input type="number" name="adults" value="0" min="0" class="form-control" />
-    </div>
+    function changeQty(type, value) {
+        counts[type] += value;
 
-    <div class="mb-3">
-        <label>Kids ($5)</label>
-        <input type="number" name="kids" value="0" min="0" class="form-control" />
-    </div>
+        if (counts[type] < 0) counts[type] = 0;
 
-    <button type="submit" class="btn btn-primary">
-        Confirm Booking
-    </button>
+        document.getElementById(type + "Qty").innerText = counts[type];
+
+        // sync to form inputs
+        document.getElementById(type + "Input").value = counts[type];
+    }
+</script>
+}
 
 </form>

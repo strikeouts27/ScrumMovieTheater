@@ -1,13 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
-
-namespace ScrumMovieTheater.Areas.Admin.Controllers;
-
+using ScrumMovieTheater.Data;
 [Area("Admin")]
 public class HomeController : Controller
 {
+    private readonly AppDbContext _context;
+
+    public HomeController(AppDbContext context)
+{
+    _context = context;
+}
     public IActionResult Index()
-    {
-        return View();
-    }
-    
+{
+    var movies = _context.Movies.ToList();
+    return View(movies);
+}
+
+
 }

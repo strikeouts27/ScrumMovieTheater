@@ -1,10 +1,104 @@
 @{
-    ViewData["Title"] = "Admin Home";
+    ViewData["Title"] = "Admin Dashboard";
 }
 
-<h2>Admin Area - Home</h2>
-<p>Welcome to the Admin area.</p>
+<style>
+    body {
+        background: #0f172a;
+        color: white;
+    }
 
-<a asp-area="Admin" asp-controller="Movie" asp-action="AddMovie"> Add A Movie</a>
-<button>Edit A Movie</button>
-<button>Delete A Movie</button>
+    .dashboard {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #94a3b8;
+        margin-bottom: 30px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .card-box {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        transition: 0.2s;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+    }
+
+    .card-box:hover {
+        transform: translateY(-5px);
+        background: #334155;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 14px;
+        color: #cbd5e1;
+    }
+
+    .btn-admin {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: #3b82f6;
+        border-radius: 6px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-admin:hover {
+        background: #2563eb;
+    }
+</style>
+
+<div class="dashboard">
+
+    <div class="title">🎬 Admin Dashboard</div>
+    <div class="subtitle">Manage movies, shows, and bookings</div>
+
+    <div class="card-grid">
+
+        <a asp-area="Admin" asp-controller="Movie" asp-action="AddMovie" class="card-box">
+            <div class="card-title">➕ Add Movie</div>
+            <div class="card-text">Create a new movie entry in the system</div>
+        </a>
+
+        <a asp-area="Admin" asp-controller="Movie" asp-action="Index" class="card-box">
+            <div class="card-title">🎞 Manage Movies</div>
+            <div class="card-text">View, edit, or delete movies</div>
+        </a>
+
+         <a asp-area="Admin" asp-controller="Movie" asp-action="AddShowTime" class="card-box">
+            <div class="card-title">🕒 Add ShowTime</div>
+            <div class="card-text">Schedule a movie in a theater</div>
+        </a>
+
+        <a asp-area="Admin" asp-controller="Movie" asp-action="Bookings" class="card-box">
+            <div class="card-title">🎟 Bookings</div>
+            <div class="card-text">View all customer bookings</div>
+        </a>        
+
+    </div>
+
+</div>

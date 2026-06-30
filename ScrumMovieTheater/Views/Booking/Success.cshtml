@@ -2,13 +2,30 @@
     ViewData["Title"] = "Booking Success";
 }
 
-<div class="alert alert-success">
-    <h2>🎉 Booking Successful!</h2>
+<div class="container mt-5">
 
-    <p>Your tickets have been booked.</p>
+    <div class="alert alert-success text-center p-4">
 
-    <p>
-        <strong>Total Price:</strong>
-        $@ViewBag.TotalPrice
-    </p>
+        <h2>🎉 Booking Successful!</h2>
+
+        <p class="mt-3">
+            Your tickets have been successfully booked.
+        </p>
+
+        <hr />
+
+        <h4>
+            Total Price: <strong>$@ViewBag.TotalPrice</strong>
+        </h4>
+
+        <p class="text-muted mt-2">
+            Please arrive 15 minutes before showtime.
+        </p>
+
+        <a class="btn btn-primary mt-3" href="/Showtimes">
+            Back to Showtimes
+        </a>
+
+    </div>
+
 </div>

@@ -1,0 +1,59 @@
+@model ScrumMovieTheater.Models.Showtime
+<link rel="stylesheet" href="~/css/AddShowTime.css" />
+
+
+@{
+    ViewData["Title"] = "Add ShowTime";
+}
+
+<h2>Add ShowTime</h2>
+
+<form asp-action="AddShowTime" method="post">
+
+    <!-- Movie Dropdown -->
+    <div class="mb-3">
+        <label>Movie</label>
+        <select asp-for="MovieId" class="form-control">
+            <option value="">-- Select Movie --</option>
+            @foreach (var movie in ViewBag.Movies)
+            {
+                <option value="@movie.MovieId">@movie.Title</option>
+            }
+        </select>
+    </div>
+
+    <!-- Theater Dropdown -->
+    <div class="mb-3">
+        <label>Theater</label>
+        <select asp-for="TheaterId" class="form-control">
+            <option value="">-- Select Theater --</option>
+            @foreach (var theater in ViewBag.Theaters)
+            {
+                <option value="@theater.TheaterId">@theater.Name</option>
+            }
+        </select>
+    </div>
+
+    <!-- Date -->
+    <div class="mb-3">
+        <label>Show Date</label>
+        <input asp-for="ShowDate" type="date" class="form-control" />
+    </div>
+
+    <!-- Time -->
+    <div class="mb-3">
+        <label>Time Slot</label>
+        <input asp-for="TimeSlot" type="time" class="form-control" />
+    </div>
+
+    <!-- Price -->
+    <div class="mb-3">
+        <label>Price</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Save Showtime
+    </button>
+
+</form>

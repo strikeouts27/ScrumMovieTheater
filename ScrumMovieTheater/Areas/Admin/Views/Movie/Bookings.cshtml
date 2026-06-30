@@ -1,0 +1,81 @@
+@model List<ScrumMovieTheater.Models.Booking>
+<style>
+body {
+    background-color: #000000  !important;
+    color: white;
+}
+
+table {
+    background-color: #1e293b !important;
+    color: white;
+}
+
+thead {
+    background-color: #000000  !important;
+    color: #facc15;
+}
+
+tbody tr {
+    background-color: #000000  !important;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #111827 !important;
+}
+</style>
+
+@{
+    ViewData["Title"] = "Bookings";
+}
+
+<link rel="stylesheet" href="~/css/AdminForm.css" />
+
+<div class="container py-4">
+
+    <div class="admin-card">
+
+        <div class="card-header">
+            <h5 class="mb-0">🎟 Customer Bookings</h5>
+        </div>
+
+        <div class="card-body">
+
+            @if (Model == null || !Model.Any())
+            {
+                <p>No bookings found.</p>
+            }
+            else
+            {
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Movie</th>
+                            <th>Theater</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var b in Model)
+                        {
+                            <tr>
+                                <td>@b.CustomerName</td>
+                                <td>@b.Showtime.Movie.Title</td>
+                                <td>@b.Showtime.Theater.Name</td>
+                                <td>@b.Showtime.ShowDate.ToShortDateString()</td>
+                                <td>@b.Showtime.TimeSlot</td>
+                                <td>@b.Showtime.Price</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+        </div>
+    </div>
+
+</div>

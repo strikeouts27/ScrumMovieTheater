@@ -1,37 +1,248 @@
 @using ScrumMovieTheater.Models
 @model List<Showtime>
 
-<h2>Showtimes</h2>
+<style>
+    body {
+        background: #f5f6fa;
+    }
 
+    h2 {
+        margin-bottom: 15px;
+        font-weight: 700;
+        color: #222;
+    }
 
+    /* FILTER BAR */
+    .filter-bar {
+        background: white;
+        padding: 12px 15px;
+        border-radius: 10px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+    }
+
+    .filter-bar select {
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    /* MOVIE LINK */
+    .movie-link {
+        color: #1a1a1a;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .movie-link:hover {
+        color: #e50914; /* movie red accent */
+        text-decoration: underline;
+    }
+
+    /* TABLE STYLE */
+    .table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+    .table th {
+        background: #111;
+        color: white;
+        padding: 12px;
+        text-align: left;
+    }
+
+    .table td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .table tr:hover {
+        background: #f1f1f1;
+        transition: 0.2s;
+    }
+
+    .price {
+        font-weight: bold;
+        color: #2e7d32;
+    }
+
+    .time {
+        color: #1565c0;
+        font-weight: 500;
+    }
+
+    /* GRID LAYOUT */
+    .showtime-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    /* CARD */
+    .showtime-card {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        transition: 0.2s ease-in-out;
+    }
+
+    .showtime-card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* MOVIE TITLE */
+    .movie-title a {
+        font-size: 18px;
+        font-weight: bold;
+        color: #111;
+        text-decoration: none;
+    }
+
+    .movie-title a:hover {
+        color: #e50914;
+    }
+
+    /* INFO ROWS */
+    .info-row {
+        margin-top: 8px;
+        font-size: 14px;
+    }
+
+    .label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    /* TIME + PRICE */
+    .time {
+        color: #1565c0;
+        font-weight: 600;
+    }
+
+    .price {
+        color: #2e7d32;
+        font-weight: 700;
+    }
+
+    /* BUTTON */
+    .book-btn {
+        margin-top: 12px;
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 6px;
+        background: #e50914;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .book-btn:hover {
+        background: #b00610;
+    }
+
+    /* Filter */
+    .filter-wrapper {
+        display: flex;
+        justify-content: center;    
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .filter-bar {
+        background: white;
+        padding: 12px 15px;
+        border-radius: 10px;
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+    }
+</style>
+
+<h2>🎬 Showtimes</h2>
+<!-- FILTER SECTION -->
+<div class="filter-wrapper">
+
+<form method="get" class="filter-bar">
+
+    <div>
+        <label>Theater:</label>
+        <select name="theaterId" onchange="this.form.submit()">
+            <option value="">All Theaters</option>
+            @foreach (var t in ViewBag.Theaters)
+            {
+                <option value="@t.TheaterId"
+                        selected="@(ViewBag.SelectedTheater == t.TheaterId)">
+                    @t.Name
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Date:</label>
+        <select name="showDate" onchange="this.form.submit()">
+            <option value="">All Dates</option>
+            @foreach (var d in ViewBag.Dates)
+            {
+                <option value="@d.ToString("yyyy-MM-dd")"
+                        selected="@(ViewBag.SelectedDate == d)">
+                    @d.ToString("MMMM dd, yyyy")
+                </option>
+            }
+        </select>
+    </div>
+
+</form>
+
+</div>
+
+<!-- TABLE (YOUR EXISTING CODE) -->
 <table class="table">
-    <tr>
-        <th>Movie</th>
-        <th>Theater</th>
-        <th>Time</th>
-        <th>Price</th>
-    </tr>
+    <div class="showtime-grid">
 
 @foreach (var item in Model)
 {
-    <tr>
-        <td>
+    <div class="showtime-card">
+
+        <div class="movie-title">
             <a href="/Movies/Details/@item.MovieId">
                 @item.Movie?.Title
             </a>
-        </td>
+        </div>
 
-        <td>
-            @item.Theater?.Name
-        </td>
+        <div class="info-row">
+            <span class="label">Theater:</span>
+            <span>@item.Theater?.Name</span>
+        </div>
 
-        <td>
-            @item.TimeSlot
-        </td>
+        <div class="info-row">
+            <span class="label">Time:</span>
+            <span class="time">@item.TimeSlot</span>
+        </div>
 
-        <td>
-            @item.Price
-        </td>
-    </tr>
+        <div class="info-row">
+            <span class="label">Price:</span>
+            <span class="price">$@item.Price</span>
+        </div>
+
+        <button class="book-btn"
+                onclick="location.href='/Booking/Tickets?showtimeId=@item.Id'">
+            Book Ticket
+        </button>
+
+    </div>
 }
+
+</div>
 </table>

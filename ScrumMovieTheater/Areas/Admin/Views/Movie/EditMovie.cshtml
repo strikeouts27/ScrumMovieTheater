@@ -1,0 +1,54 @@
+@model ScrumMovieTheater.Models.Movie
+
+<h2>Edit Movie</h2>
+
+<form asp-area="Admin" asp-controller="Movie" asp-action="EditMovie" method="post">
+
+    <input type="hidden" asp-for="MovieId" />
+
+    <div>
+        <label>Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div>
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div>
+        <label>Genre</label>
+        <input asp-for="Genre" class="form-control" />
+    </div>
+
+    <div>
+        <label>Runtime (minutes)</label>
+        <input asp-for="RuntimeMinutes" class="form-control" />
+    </div>
+    
+    <div>
+        <label>Rating</label>
+        <select asp-for="Rating" class="form-control" />
+        <option value="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
+        </select>
+    </div>
+    
+
+    <div>
+        <label>Release Date</label>
+        <input asp-for="ReleaseDate" type="date" class="form-control" />
+    </div>
+
+    <div>
+        <label>Image URL</label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">
+        Update Movie
+    </button>
+
+</form>
