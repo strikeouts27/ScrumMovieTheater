@@ -16,6 +16,5 @@ public partial class Movie
     public string? Genre { get; set; }
 
     public string? Rating { get; set; }
-
 }
 
