@@ -1,0 +1,485 @@
+﻿<!-- Purchase.cshtml -->
+@* Razor view for box-office ticket purchase — shows theaters, a date slider, and showtime area. *@
+
+<link rel="stylesheet" href="~/css/Purchase.css">
+<!-- External CSS for potential sliders (not directly used below but available) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+<div class="container">
+    @* Show greeting when the user is authenticated *@
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <p>Hello, @User.Identity.Name!</p>
+    }
+    else
+    {
+        <p>Please log in to purchase tickets.</p>
+    }
+
+    <div>Select a theater</div>
+
+    <!-- Add this wrapper div with flex-row class -->
+    <div style="display:flex; align-items:center; gap:8px; justify-content:center;">
+        @* Render a button for each theater name provided in ViewBag.TheaterNames.
+       These currently use href="#" as placeholders — replace with a real route when available. *@
+        @if (ViewBag.TheaterNames != null)
+
+            @foreach (var name in ViewBag.TheaterNames)
+            {
+                @* when you call a function we use input to specify paramater values.  *@
+                @using (Html.BeginForm("pickTheater", "Movie", FormMethod.Post))
+                {
+                    <input type="hidden" name="selectedTheater" value="@name" />
+                    <button class="btn btn-danger" type="submit" role="button">@name</button>
+                }
+            }
+    </div>
+
+
+</div>
+
+<button onclick="selectTheater()"></button>
+
+@if (!String.IsNullOrEmpty(ViewBag.SelectedTheater))
+{
+    <div class="ticket-date-container mt-3">
+        <style>
+                /* Viewport that clips the sliding row; change max-width to show more or fewer items */
+                .menu-wrapper {
+                    width: 100%;
+                    max-width: 880px; /* Larger value shows more date items at once */
+                    overflow: hidden; /* hide the overflowing items; the inner .menu will be translated */
+                    margin: 0 auto; /* center the viewport */
+                }
+
+                /* The sliding row: a horizontal flex container that we move with transform */
+                .menu {
+                    display: flex;
+                    gap: 20px; /* must match GAP constant in JS */
+                    padding: 8px 0;
+                    transition: transform .4s ease; /* smooth animation when translated */
+                    will-change: transform; /* hint to browser for performance */
+                }
+
+                /* Individual date card styling */
+                .menu-item {
+                    min-width: 140px; /* controls how many items fit in one viewport */
+                    flex: 0 0 auto; /* prevent items from shrinking or growing */
+                    background: #f8f9fa;
+                    padding: 10px 12px;
+                    border-radius: 6px;
+                    text-align: center;
+                    cursor: pointer;
+                    user-select: none;
+                }
+
+                    /* Selected/highlighted date */
+                    .menu-item.selected {
+                        background: black;
+                        color: red;
+                        font-weight: 600;
+                    }
+
+                /* Responsive tweak: use smaller items on small screens */
+                @@media (max-width: 480px) {
+                    .menu-item {
+                        min-width: 110px;
+                    }
+                }
+        </style>
+
+        <div style="display:flex; align-items:center; gap:8px; justify-content:center;">
+            <button class="btn btn-dark" id="prevButton" type="button" aria-label="Previous">Prev</button>
+
+            <!-- The viewport that clips the sliding .menu -->
+            <div class="menu-wrapper mt-3" id="menuWrapper" aria-hidden="false">
+                <div id="menu" class="menu" role="list">
+                    @* Generate a fixed number of date items starting from today.
+                   Each item gets a data-day attribute (yyyy-MM-dd) we can use in JS. *@
+            
+
+                    @for (int i = 0; i < 14; i++)
+                    {
+                        var dt = DateTime.Today.AddDays(i);
+                        var theater = ViewBag.SelectedTheater;
+                        @using (Html.BeginForm("selectedMovieDate", "Movie", FormMethod.Post))
+                        {
+                            // I need you to capture information on my webpage and not leave anything visible on the screen.
+                            // form actions
+                            <input type="hidden" name="selectedTheater" value="@theater" />
+                            <input type="hidden" name="date" value="@dt" />
+
+                            <button class="btn btn-danger" type="submit" role="listitem" data-day="@dt.ToString("yyyy-MM-dd")">
+                                <div class="menu-item-day">@dt.ToString("ddd")</div>
+                                <div class="menu-item-date">@dt.ToString("M/d")</div>
+                            </button>
+                        }
+                        @* var dt = DateTime.Today.AddDays(i); *@
+
+                    }
+                </div>
+            </div>
+
+            <button class="btn btn-dark" id="nextButton" type="button" aria-label="Next">Next</button>
+
+        </div>
+    </div>
+
+
+    <script>
+        // Grab important DOM nodes once
+        const menu = document.getElementById('menu');               // the sliding row
+        const menuWrapper = document.getElementById('menuWrapper'); // the clipped viewport
+        const prevBtn = document.getElementById('prevButton');     // left control
+        const nextBtn = document.getElementById('nextButton');     // right control
+
+        // Tracks current translateX (in pixels) applied to `menu`. 0 = left-most view.
+        let currentOffset = 0;
+
+        // Must match the CSS gap between items so content width calculation is correct.
+        const GAP = 20;
+
+        // Return the width of the viewport we page by (one "screen" of items).
+        function getPageWidth() {
+            return menuWrapper.clientWidth;
+        }
+
+        // Scroll the menu by `delta` pixels (positive moves right, negative moves left).
+        function scrollBy(delta) {
+            const maxScroll = 0; // cannot move past the left-most position
+
+            // Compute total content width by summing each child's offsetWidth and adding the gaps.
+            const contentWidth = Array.from(menu.children).reduce((sum, el) => sum + el.offsetWidth + GAP, 0) - GAP;
+
+            // The visible viewport width
+            const viewport = menuWrapper.clientWidth;
+
+            // When content is wider than viewport, minOffset will be negative (the right-most translation).
+            // Otherwise minOffset is 0 (no scrolling needed).
+            const minOffset = Math.min(0, viewport - contentWidth);
+
+            // Propose new offset and clamp between maxScroll (0) and minOffset (negative or 0)
+            let proposed = currentOffset + delta;
+            if (proposed > maxScroll) proposed = maxScroll;
+            if (proposed < minOffset) proposed = minOffset;
+
+            // Apply the transform and remember the offset
+            currentOffset = proposed;
+            menu.style.transform = `translateX(${currentOffset}px)`;
+
+            // Update control enabled/disabled state
+            updateControls();
+        }
+
+        // Enable or disable Prev/Next when at the ends or when content fits the viewport
+        function updateControls() {
+            const contentWidth = Array.from(menu.children).reduce((sum, el) => sum + el.offsetWidth + GAP, 0) - GAP;
+            const viewport = menuWrapper.clientWidth;
+
+            // Disable "Prev" when at left-most
+            prevBtn.disabled = currentOffset === 0;
+
+            // Disable "Next" when content fits or when at right-most
+            nextBtn.disabled = (viewport - contentWidth) === currentOffset || (contentWidth <= viewport);
+        }
+
+        // Page left by one viewport when Prev clicked
+        prevBtn.addEventListener('click', () => {
+            scrollBy(getPageWidth());
+        });
+
+        // Page right by one viewport when Next clicked
+        nextBtn.addEventListener('click', () => {
+            scrollBy(-getPageWidth());
+        });
+
+        // Click handler on the row to select a date item.
+        // Uses event delegation and e.target.closest to find the clicked `.menu-item`.
+        menu.addEventListener('click', (e) => {
+            const item = e.target.closest('.menu-item');
+            if (!item) return;
+
+            // Clear previous selection and mark the clicked item
+            menu.querySelectorAll('.menu-item').forEach(i => i.classList.remove('selected'));
+            item.classList.add('selected');
+
+            // Read the ISO date from data-day attribute (e.g. "2026-07-23")
+            const selected = item.dataset.day;
+            console.log('Selected date:', selected);
+
+            // TODO: wire `selected` into a hidden input or an AJAX call to send to server.
+        });
+
+        // On window resize we must re-evaluate bounds and clamp currentOffset if needed.
+        window.addEventListener('resize', () => {
+            const contentWidth = Array.from(menu.children).reduce((sum, el) => sum + el.offsetWidth + GAP, 0) - GAP;
+            const viewport = menuWrapper.clientWidth;
+            const minOffset = Math.min(0, viewport - contentWidth);
+
+            if (currentOffset < minOffset) {
+                // If previously scrolled too far for the new smaller viewport, clamp and apply transform.
+                currentOffset = minOffset;
+                menu.style.transform = `translateX(${currentOffset}px)`;
+            }
+            updateControls();
+        });
+
+        // Initialize the button state on first render.
+        updateControls();
+    </script>
+
+    @if (ViewBag.Movies != null)
+    {
+        <div class="container">
+
+            <div style="display:flex; align-items:center; gap:8px; justify-content:center;">
+                <!-- Prev/Next controls are placed outside the overflowed .menu-wrapper
+                so they remain visible even when the sliding content is clipped. -->
+
+                <button class="btn btn-dark" id="prevButton" type="button" aria-label="Previous">Prev</button>
+
+                <!-- The viewport that clips the sliding .menu -->
+                <div class="menu-wrapper mt-3" id="menuWrapper" aria-hidden="false">
+                    <div id="menu" class="menu" role="list">
+                        @* Generate a fixed number of date items starting from today.
+                            Each item gets a data-day attribute (yyyy-MM-dd) we can use in JS. *@
+
+                
+                        @foreach (var movie in ViewBag.Movies)
+                        {
+
+                            var theater = ViewBag.SelectedTheater;
+
+                            @using (Html.BeginForm("selectedMovie", "Movie", FormMethod.Post))
+                            {
+                                <input type="hidden" name="selectedTheaterId" value="@ViewBag.TheaterId" />
+                                <input type="hidden" name="date" value="@ViewBag.date" />
+                                <input type="hidden" name="movieTitle" value="@movie" />
+
+                                <button class="btn btn-danger" type="submit" role="listitem">
+                                    <div class="menu-item-day">@movie</div>
+                                </button>
+                            }
+                        }
+                    </div>
+                </div>
+                <button class="btn btn-dark" id="nextButton" type="button" aria-label="Next">Next</button>
+
+            </div>
+        </div>
+
+        @if (ViewBag.Showtimes != null)
+        {
+            <div class="container">
+
+                <div style="display:flex; align-items:center; gap:8px; justify-content:center;">
+                    <!-- Prev/Next controls are placed outside the overflowed .menu-wrapper
+                    so they remain visible even when the sliding content is clipped. -->
+                    <button class="btn btn-dark" id="prevButton" type="button" aria-label="Previous">Prev</button>
+
+                    <!-- The viewport that clips the sliding .menu -->
+                    <div class="menu-wrapper mt-3" id="menuWrapper" aria-hidden="false">
+                        <div id="menu" class="menu" role="list">
+                            @* Generate a fixed number of date items starting from today.
+                            Each item gets a data-day attribute (yyyy-MM-dd) we can use in JS. *@
+                            @foreach (var showtime in ViewBag.Showtimes)
+                            {
+                                @using (Html.BeginForm("selectedShowtime", "Movie", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="selectedTheaterId" value="@ViewBag.TheaterId" />
+                                    <input type="hidden" name="date" value="@ViewBag.Date" />
+                                    <input type="hidden" name="selectedMovieId" value="@ViewBag.MovieId" />
+                                    <input type="hidden" name="selectedShowtime" value="@showtime" />
+
+                                    <button class="btn btn-danger" type="submit" role="listitem">
+                                        <div class="menu-item-day">@showtime</div>
+                                    </button>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <button class="btn btn-dark" id="nextButton" type="button" aria-label="Next">Next</button>
+
+                </div>
+            </div>
+        }
+
+    
+        @if (ViewBag.ShowtimeId != null && ViewBag.ShowtimePrice != null)
+        {
+            <div class="container border-white">
+
+                <!-- Info box with white border matching your theater button styling Uses custom CSS for full control and comments -->
+                <div class="info-box-white p-4 mt-4">
+                    <!-- Display ViewBag data inside the white bordered box Only show if we have selected theater -->
+                    @if (!string.IsNullOrEmpty(ViewBag.SelectedTheater))
+                    {
+                        <h3 class="mb-5">Here are your purchase details so far.</h3>
+                        /*Confirming the movie selection  */
+                        
+                        
+                        /* I NEED TO MAKE A FUNCTION TO CALCUALTE THE PRICE PER TICKET AND SHOW THAT ON THE PAGE. I MAY NEED 
+                        TO CREATE A FAKE BOOKING ID. */
+                  <div class="container">
+                        <div class="form-group d-flex">
+
+                            <p class="mt-3">Adult Tickets:</p>
+                           
+
+                            <input type="number"
+                                   id="AdultTicketQuantity"
+                                   name="ticketQuantity"
+                                   min="0"
+                                   max="100"
+                                   value="0"
+                                   class="form-control"
+                                   style="width: 100px;" />
+
+                                <span class="adultMoviePricing mt-3 mx-1"></span>
+                                <span class="mt-3 mx-1"> X </span>
+                                <span class="adultMoviePricing mt-3 mx-1">@ViewBag.TotalAdultTicketPrice</span>
+                                <span class="mt-3 mx-1">=</span>
+                                <span class="adultTicketSubtotal mt-3 mx-1">Subtotal</span>
+                                                      
+                        </div>
+
+                        <div class="form-group d-flex">
+
+                                <p class="mt-3">Child Tickets:</p>
+
+                                <input type="number"
+                                       id="ChildTicketQuantity"
+                                       name="ticketQuantity"
+                                       min="0"
+                                       max="100"
+                                       value="0"
+                                       class="form-control"
+                                       style="width: 100px;" />
+
+                                <span class="childMoviePricing mt-3 mx-1"></span>
+                                <span class="mt-3 mx-1"> X </span>
+                                <span class="childMoviePricing mt-3 mx-1">@ViewBag.TotalChildTicketPrice</span>
+                                <span class="mt-3 mx-1">=</span>
+                                <span class="childTicketSubtotal mt-3 mx-1">Subtotal</span>
+
+                        </div>
+                            
+                            <div class="form-group d-flex">
+                                <p>Total Price:</p>
+                                <p class="TotalMoviePricing"></p>
+                             </div>
+
+                </div>
+
+                        <div class="container">
+                            <h3 class="mt-5">The Remaining Capacity is <span class="remainingCapacity">@ViewBag.RemainingCapacity</span></h3>
+                        </div>
+                        
+                    }
+                </div>
+                @section Scripts {
+                <script>
+                        $(document).ready(function() { 
+                            $("#AdultTicketQuantity").on("change", function(){
+                                let adultTicketCount = $(this).val(); 
+                                    console.log(adultTicketCount);
+
+                                let adultPrice = $(".adultMoviePricing").text();
+                                console.log(adultPrice);
+
+                                let adultTicketPricing = adultTicketCount * adultPrice; 
+                                console.log(adultTicketPricing); 
+                                    //please see https://stackoverflow.com/questions/35073531/how-to-trigger-onchange-when-the-page-load
+                                $(".adultTicketSubtotal").text(adultTicketPricing);
+                                CalculateMovieTicketTotal(); 
+                                CalculateCapacity(); 
+                                    }).change();  
+                        });
+
+                            $(document).ready(function() {
+                                $("#ChildTicketQuantity").on("change", function() {
+                                    let childTicketCount = $(this).val();
+                                    console.log(childTicketCount);
+
+                                    let childPrice = $(".childMoviePricing").text();
+                                    console.log(childPrice);
+
+                                    let childTicketPricing = childTicketCount * childPrice;
+                                    console.log(childTicketPricing);
+                                    //please see https://stackoverflow.com/questions/35073531/how-to-trigger-onchange-when-the-page-load
+                                    $(".childTicketSubtotal").text(childTicketPricing);
+                                    CalculateMovieTicketTotal();
+                                    CalculateCapacity();
+                                }).change();
+                            });
+
+                         function CalculateMovieTicketTotal()
+                         {
+                                let TotalMoviePricing = Number($(".adultTicketSubtotal").text()) + Number($(".childTicketSubtotal").text());
+                                $(".TotalMoviePricing").text(TotalMoviePricing.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+                                
+                         }
+
+                         function CalculateCapacity()
+                         {
+
+                                let purchasedNumberOfTickets = Number($("#AdultTicketQuantity").val()) + Number($("#ChildTicketQuantity").val());
+
+                                let remainingCapacity = Number($(".remainingCapacity").text()); 
+
+                                remainingCapacity = Number(remainingCapacity - purchasedNumberOfTickets);
+
+                                $(".remainingCapacity").text(remainingCapacity);
+                                
+                       
+                         }
+                </script>
+                         }
+                
+                <style>
+                        /*
+                                                       White bordered container for displaying information
+                                                       Similar to your brass-outlined boxes but with white border
+                                                    */
+                        .info-box-white {
+                            /*
+                                                           border property: [width] [style] [color]
+                                                           2px = thickness of the border
+                                                           solid = continuous line (not dashed or dotted)
+                                                           white = white color border
+                                                        */
+                            border: 2px solid white;
+                            /*
+                                                           Rounded corners for modern appearance
+                                                           Matches your theme's border radius
+                                                        */
+                            border-radius: 8px;
+                            /*
+                                                           Background color - light gray to make white border stand out
+                                                           You can change this to any color you prefer
+                                                        */
+                            /*
+                                                           Add subtle shadow for depth effect
+                                                           Makes the box appear to float above the page
+                                                        */
+                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                        }
+                </style>
+
+
+            </div>
+
+
+        }
+
+        
+            
+
+
+    
+
+
+    }
+
+}
+

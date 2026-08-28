@@ -36,6 +36,14 @@ namespace ScrumMovieTheater.Controllers
         {
             return View();
         }
+
+
+        public IActionResult AccessDenied()
+        {
+            return View("AccessDenied");
+        }
+
+
     }
 
 }

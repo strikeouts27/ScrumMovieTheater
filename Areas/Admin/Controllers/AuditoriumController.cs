@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ScrumMovieTheater.Data;
 using ScrumMovieTheater.Models;
@@ -14,6 +15,8 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
         {
             _context = context;
         }
+
+        [Authorize(Roles = "Admin, Manager")]
         // Show all auditoriums
         public IActionResult Index()
         {
@@ -23,6 +26,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
 
             return View(auditoriums);
         }
+        [Authorize(Roles = "Admin, Manager")]
         // Add Auditorium Get Method
         [HttpGet]
         public IActionResult AddAuditorium()
@@ -35,6 +39,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
         }
 
         // Add Auditorium Post method
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         public IActionResult AddAuditorium(Auditorium auditorium)
         {
@@ -58,6 +63,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
         }
 
         // Edit Auditorium get method
+        [Authorize(Roles = "Admin, Manager")]
         [HttpGet]
         public IActionResult EditAuditorium(int id)
         {
@@ -75,6 +81,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
         }
 
         // Edit Auditorium post method
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         public IActionResult EditAuditorium(Auditorium auditorium)
         {
@@ -107,6 +114,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
         }
 
         // Deactivate post method
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         public IActionResult DeactivateAuditorium(int id)
         {

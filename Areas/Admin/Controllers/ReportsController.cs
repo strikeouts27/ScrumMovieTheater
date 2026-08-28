@@ -19,7 +19,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
             _context = context;
         }
 
-
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult Sales(DateTime? startDate, DateTime? endDate)
         {
             var bookings = _context.Bookings
@@ -94,6 +94,7 @@ namespace ScrumMovieTheater.Areas.Admin.Controllers
             return View(report);
         }
         // Method for exporting file
+        [Authorize(Roles = "Admin, Manager")]
         public IActionResult ExportCsv()
         {
             var report = _context.Bookings
