@@ -61,6 +61,19 @@ namespace ScrumMovieTheater.Data
             modelBuilder.Entity<Theater>()
                 .HasKey(t => t.TheaterId);
 
+            // DB Context -> Theater Configuration
+            modelBuilder.Entity<Theater>()
+                .HasData(
+                    new Theater 
+                    { 
+                        TheaterId = 1, 
+                        Name = "Richardson",
+                        Address = "100 S Central Expy",
+                        Description = "Our first theater",
+                        Active = true
+                    }                  
+                );
+
             modelBuilder.Entity<Movie>()
                 .HasKey(m => m.MovieId);
 
