@@ -3,6 +3,7 @@
 ## Database
 We are using a centralized database for simplified development. Ask Andrew for connection details and to be added to IP allow-list.
 
-We now use the Secret Manager for the connection details. 
-The first time, run `dotnet user-secrets init` to enable secret storage. It will add one entry into your project file.
-Then, run `dotnet user-secrets set "DefaultPassword" "{replace with password from Andrew}"`.
+We now use the Secret Manager for the connection details.
+Everyone needs to run `dotnet user-secrets set "DefaultPassword" "{replace with password from Andrew}"` on their machine from the project directory (which is the default location when you open terminal).
+
+Source: [Microsoft Documentation](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-10.0&tabs=windows%2Cpowershell#set-a-secret)
