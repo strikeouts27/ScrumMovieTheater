@@ -13,6 +13,8 @@ namespace ScrumMovieTheater.Models
         public List<Showtime> Showtimes { get; set; } = new List<Showtime>();
 
         public List<Auditorium> Auditoriums { get; set; } = new();
+        // this next attribute says this model is an active part of the project/development.
+        // False would be a deleted record. 
         public bool Active { get; set; }
     }
 } 

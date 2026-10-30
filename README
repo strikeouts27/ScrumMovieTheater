@@ -1,0 +1,8 @@
+# Setup
+
+## Database
+We are using a centralized database for simplified development. Ask Andrew for connection details and to be added to IP allow-list.
+
+We now use the Secret Manager for the connection details. 
+The first time, run `dotnet user-secrets init` to enable secret storage. It will add one entry into your project file.
+Then, run `dotnet user-secrets set "DefaultPassword" "{replace with password from Andrew}"`.
