@@ -1,0 +1,21 @@
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
+namespace ScrumMovieTheater.Old.Models
+{
+    public class Theater
+    {
+        [Key]
+        public int TheaterId { get; set; }
+        public string? Name { get; set; }
+        public string? Address { get; set; }
+        public string? Description { get; set; }
+        public List<Showtime> Showtimes { get; set; } = new List<Showtime>();
+
+        public List<Auditorium> Auditoriums { get; set; } = new();
+        // this next attribute says this model is an active part of the project/development.
+        // False would be a deleted record. 
+        public bool Active { get; set; }
+    }
+} 
+
