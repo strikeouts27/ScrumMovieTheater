@@ -1,7 +1,28 @@
+using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
+using ScrumMovieTheater.API.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// this code works with the asp.net secrets manager. it can store information from the connection string in app settings.
+
+var conStrBuilder = new MySqlConnectionStringBuilder(
+        builder.Configuration.GetConnectionString("DefaultConnection"));
+conStrBuilder.Password = builder.Configuration["DefaultPassword"]; // this is a secret see readme
+// this line of code generates the attributes of the mysqlconnection string builder class. 
+var connection = conStrBuilder.ConnectionString;
+
+// Add DbContext HERE
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        connection,
+        ServerVersion.AutoDetect(
+            connection)
+    ));
 
 var app = builder.Build();
 
