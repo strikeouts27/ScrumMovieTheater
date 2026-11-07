@@ -12,6 +12,10 @@ builder.Services.AddControllersWithViews();
 
 var conStrBuilder = new MySqlConnectionStringBuilder(
         builder.Configuration.GetConnectionString("DefaultConnection"));
+if (builder.Configuration["DefaultPassword"] == null)
+{
+    throw new Exception("Please create password secret. See the README for instructions.");
+}
 conStrBuilder.Password = builder.Configuration["DefaultPassword"]; // this is a secret see readme
 // this line of code generates the attributes of the mysqlconnection string builder class. 
 var connection = conStrBuilder.ConnectionString;
