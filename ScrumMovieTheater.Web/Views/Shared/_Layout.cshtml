@@ -13,37 +13,27 @@
     <header>
 <nav class="navbar navbar-expand-lg bg-primary">
   <div class="container-fluid ">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand text-light" href="#">ScrumMovieTheater</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active aria-current=page text-light href="#">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-light" href="#">Theaters</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link text-light" href="#">Menus</a>
         </li>
+
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
     </div>
   </div>
 </nav>
@@ -54,11 +44,47 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - ScrumMovieTheater.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+  <nav class="navbar fixed-bottom bg-primary-subtle">
+    <!-- The parent div rules them all --> 
+    <div class="container-fluid align-items-start">
+        <div class="d-flex flex-column">
+          <div class="navbar-brand">About Us</div>
+          <div>News</div>
+          <div>Special Offers and Discounts</div>     
+          <div>Careers</div>
+          <div>Events</div>
         </div>
-    </footer> 
+
+        <div class="d-flex flex-column">
+          <div class="navbar-brand">Movies</div>
+          <div>Rating Information</div>
+          <div>About Imax</div>
+          <div>About Dolby Cinema</div>
+          <div>About Laser at Scrum Movie Theater</div>
+          <div>About RealD 3D</div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <div class="navbar-brand">Theaters</div>
+          <div class="">Dallas</div>
+          <div class="">Houston</div>
+          <div class="">Fort Worth</div>
+          <div class="">San Antonio</div>
+          <div class="">Chicago</div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <div class="navbar-brand">Contact Us</div>
+          <div class="">Facebook</div>
+          <div class="">Instagram</div>
+          <div class="">X</div>
+        </div>
+    <!--container div--> 
+    </div>
+
+  
+  </nav>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
