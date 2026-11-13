@@ -29,3 +29,50 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Carousel Styles */ 
+#movieCarousel {
+    max-height: 550px;
+    overflow: hidden;
+}
+
+#movieCarousel .carousel-item {
+    height: 550px;
+    position: relative;
+}
+
+#movieCarousel .carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay */
+#movieCarousel .carousel-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.1)
+    );
+}
+
+#movieCarousel .carousel-caption {
+    z-index: 2;
+    bottom: 60px;
+    left: 10%;
+    right: 10%;
+}
+
+@media (max-width: 768px) {
+    #movieCarousel,
+    #movieCarousel .carousel-item {
+        height: 350px;
+    }
+
+    #movieCarousel .carousel-caption {
+        bottom: 30px;
+    }
+}

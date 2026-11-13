@@ -2,7 +2,299 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!--CAROUSEL--> 
+
+<div id="movieCarousel"
+     class="carousel slide carousel-fade"
+     data-bs-ride="carousel"
+     data-bs-interval="5000">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#movieCarousel"
+                data-bs-slide-to="0"
+                class="active"></button>
+
+        <button type="button"
+                data-bs-target="#movieCarousel"
+                data-bs-slide-to="1"></button>
+
+        <button type="button"
+                data-bs-target="#movieCarousel"
+                data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+
+            <img src="~/images/dune.jpg"
+                 class="d-block w-100"
+                 alt="Dune Part Two">
+
+            <div class="carousel-caption text-start">
+                <h2>Dune: Part Two</h2>
+                <p>Sci-Fi | Adventure | 2024</p>
+
+                <p>
+                    Experience an epic adventure
+                    across the desert planet.
+                </p>
+
+                <a href="#" class="btn btn-warning">
+                    View Movie
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+
+            <img src="~/images/batman.jpg"
+                 class="d-block w-100"
+                 alt="The Batman">
+
+            <div class="carousel-caption text-start">
+                <h2>The Batman</h2>
+                <p>Action | Crime | 2022</p>
+
+                <p>
+                    Gotham City's Dark Knight
+                    investigates a dangerous mystery.
+                </p>
+
+                <a href="#" class="btn btn-warning">
+                    View Movie
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+
+            <img src="~/images/interstellar.jpg"
+                 class="d-block w-100"
+                 alt="Interstellar">
+
+            <div class="carousel-caption text-start">
+                <h2>Interstellar</h2>
+                <p>Sci-Fi | Drama | 2014</p>
+
+                <p>
+                    Journey beyond the stars
+                    to save humanity.
+                </p>
+
+                <a href="#" class="btn btn-warning">
+                    View Movie
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Previous -->
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#movieCarousel"
+            data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <!-- Next -->
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#movieCarousel"
+            data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
+
+<!-- MOVIE SECTION -->
+<div class="container">
+
+    <!-- ROW 1: Three equal movies -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/images/movie1.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5>Movie 1</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/images/movie2.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5>Movie 2</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/images/movie3.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5>Movie 3</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ROW 2: Four equal movies -->
+    <div class="row g-3 mb-4">
+
+        @for (int i = 4; i <= 7; i++)
+        {
+            <div class="col-6 col-md-3">
+                <div class="card">
+                    <img src="~/images/movie@(i).jpg"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5>Movie @i</h5>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+    <!-- ROW 3: One wide and two narrow -->
+    <div class="row g-3">
+
+        <div class="col-md-6">
+            <div class="card">
+                <img src="~/images/movie8.jpg"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5>Featured Movie</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card">
+                <img src="~/images/movie9.jpg"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5>Movie 9</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card">
+                <img src="~/images/movie10.jpg"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5>Movie 10</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SPECIAL OFFERS SECTION -->
+<div class="container my-5">
+
+    <h2 class="mb-4">Special Offers</h2>
+
+    <!-- Featured Offer -->
+    <div class="card text-white bg-primary mb-4">
+        <div class="card-body p-5 text-center">
+
+            <h2 class="card-title">
+                Movie Night Special!
+            </h2>
+
+            <h1 class="display-3 fw-bold">
+                30% OFF
+            </h1>
+
+            <p class="lead">
+                Get 30% off your next movie rental!
+            </p>
+
+            <p>
+                Use promotional code:
+                <strong>MOVIENIGHT</strong>
+            </p>
+
+            <a href="#" class="btn btn-warning btn-lg">
+                Shop Movies
+            </a>
+
+        </div>
+    </div>
+
+
+    <!-- Additional Offers -->
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="card h-100">
+
+                <img src="~/images/bundle.jpg"
+                     class="card-img-top"
+                     alt="Movie bundle offer">
+
+                <div class="card-body">
+                    <h5 class="card-title">Bundle Deal</h5>
+
+                    <p class="card-text">
+                        Rent three movies and get your
+                        fourth rental free!
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary">
+                        Learn More
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card h-100">
+
+                <img src="~/images/weekend.jpg"
+                     class="card-img-top"
+                     alt="Weekend movie offer">
+
+                <div class="card-body">
+                    <h5 class="card-title">Weekend Special</h5>
+
+                    <p class="card-text">
+                        Enjoy special movie rental pricing
+                        every weekend.
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary">
+                        Learn More
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
