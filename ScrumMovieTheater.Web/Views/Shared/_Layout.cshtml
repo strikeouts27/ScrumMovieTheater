@@ -1,93 +1,102 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ScrumMovieTheater.Web</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ScrumMovieTheater.Web.styles.css" asp-append-version="true" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - ScrumMovieTheater.Web</title>
+  <script type="importmap"></script>
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/ScrumMovieTheater.Web.styles.css" asp-append-version="true" />
+
+  <!--https://fontawesome.com/search?q=movies -->
+  <!-- FONT AWESOME CDN LINK -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+   
 </head>
+
 <body>
-    <header>
-<nav class="navbar navbar-expand-lg bg-primary">
-  <div class="container-fluid ">
-    <a class="navbar-brand text-light" href="#">ScrumMovieTheater</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active aria-current=page text-light href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" href="#">Theaters</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" href="#">Movies</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" href="#">Menus</a>
-        </li>
+  <header>
+    <nav class="navbar bg-primary">
+      <div class="container-fluid ">
+        <!-- Font Awesome Clapperboard Icon-->
+        <i class="fa-solid fa-clapperboard fa-lg"></i>
 
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Find Your Theater
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
       </ul>
+        
+        <div class="nav-item">
+          <a class="nav-link text-light text-end" href="#">Sign In</a>
+        </div>
 
-    </div>
+    
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <main role="main" class="pb-3">
+      @RenderBody()
+    </main>
   </div>
-</nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
   <nav class="navbar fixed-bottom bg-primary-subtle">
-    <!-- The parent div rules them all --> 
+    <!-- The parent div rules them all -->
     <div class="container-fluid align-items-start">
-        <div class="d-flex flex-column">
-          <div class="navbar-brand">About Us</div>
-          <div>News</div>
-          <div>Special Offers and Discounts</div>     
-          <div>Careers</div>
-          <div>Events</div>
-        </div>
+      <div class="d-flex flex-column">
+        <div class="navbar-brand">About Us</div>
+        <div>News</div>
+        <div>Special Offers and Discounts</div>
+        <div>Careers</div>
+        <div>Events</div>
+      </div>
 
-        <div class="d-flex flex-column">
-          <div class="navbar-brand">Movies</div>
-          <div>Rating Information</div>
-          <div>About Imax</div>
-          <div>About Dolby Cinema</div>
-          <div>About Laser at Scrum Movie Theater</div>
-          <div>About RealD 3D</div>
-        </div>
+      <div class="d-flex flex-column">
+        <div class="navbar-brand">Movies</div>
+        <div>Rating Information</div>
+        <div>About Imax</div>
+        <div>About Dolby Cinema</div>
+        <div>About Laser at Scrum Movie Theater</div>
+        <div>About RealD 3D</div>
+      </div>
 
-        <div class="d-flex flex-column">
-          <div class="navbar-brand">Theaters</div>
-          <div class="">Dallas</div>
-          <div class="">Houston</div>
-          <div class="">Fort Worth</div>
-          <div class="">San Antonio</div>
-          <div class="">Chicago</div>
-        </div>
+      <div class="d-flex flex-column">
+        <div class="navbar-brand">Theaters</div>
+        <div class="">Dallas</div>
+        <div class="">Houston</div>
+        <div class="">Fort Worth</div>
+        <div class="">San Antonio</div>
+        <div class="">Chicago</div>
+      </div>
 
-        <div class="d-flex flex-column">
-          <div class="navbar-brand">Contact Us</div>
-          <div class="">Facebook</div>
-          <div class="">Instagram</div>
-          <div class="">X</div>
-        </div>
-    <!--container div--> 
+      <div class="d-flex flex-column">
+        <div class="navbar-brand">Contact Us</div>
+        <div class="">Facebook</div>
+        <div class="">Instagram</div>
+        <div class="">X</div>
+      </div>
+      <!--container div-->
     </div>
 
   
   </nav>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
